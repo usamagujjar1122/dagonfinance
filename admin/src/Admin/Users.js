@@ -134,72 +134,73 @@ EnhancedTableHead.propTypes = {
   rowCount: PropTypes.number.isRequired,
 };
 
-function EnhancedTableToolbar(props) {
-  const { numSelected } = props;
-  const { selected} = props;
-  const { setRefresh } = props;
-  const handledelete = async (selected) => {
-    const res = await axios.post(`${URL}/user/delete`, {selected})
-    console.log(res.data)
-    if(res.data.status === "success"){
-      setRefresh(true)
-    }
-  }
-  return (
-    <Toolbar
-      sx={{
-        pl: { sm: 2 },
-        pr: { xs: 1, sm: 1 },
-        ...(numSelected > 0 && {
-          bgcolor: (theme) =>
-            alpha(theme.palette.primary.main, theme.palette.action.activatedOpacity),
-        }),
-      }}
-    >
-      {numSelected > 0 ? (
-        <Typography
-          sx={{ flex: '1 1 100%' }}
-          color="inherit"
-          variant="subtitle1"
-          component="div"
-        >
-          {numSelected} selected
-        </Typography>
-      ) : (
-        <Typography
-          sx={{ flex: '1 1 100%' }}
-          variant="h6"
-          id="tableTitle"
-          component="div"
-        >
-          Users
-        </Typography>
-      )}
 
-      {numSelected > 0 ? (
-        <Tooltip title="Delete">
-          <IconButton onClick={()=>{handledelete(selected)}}>
-            <DeleteIcon />
-          </IconButton>
-        </Tooltip>
-      ) : (
-        <Tooltip title="Filter list">
-          <IconButton>
-            <FilterListIcon />
-          </IconButton>
-        </Tooltip>
-      )}
-    </Toolbar>
-  );
-}
-
-EnhancedTableToolbar.propTypes = {
-  numSelected: PropTypes.number.isRequired,
-};
 
 
 
 const Users = () => {
+  function EnhancedTableToolbar(props) {
+    const { numSelected } = props;
+    const { selected} = props;
+    const { setRefresh } = props;
+    const handledelete = async (selected) => {
+      const res = await axios.post(`${URL}/user/deleteUsers`, {selected})
+      if(res.data.status === "success"){
+        setSelected([])
+        setRefresh(true)
+      }
+    }
+    return (
+      <Toolbar
+        sx={{
+          pl: { sm: 2 },
+          pr: { xs: 1, sm: 1 },
+          ...(numSelected > 0 && {
+            bgcolor: (theme) =>
+              alpha(theme.palette.primary.main, theme.palette.action.activatedOpacity),
+          }),
+        }}
+      >
+        {numSelected > 0 ? (
+          <Typography
+            sx={{ flex: '1 1 100%' }}
+            color="inherit"
+            variant="subtitle1"
+            component="div"
+          >
+            {numSelected} selected
+          </Typography>
+        ) : (
+          <Typography
+            sx={{ flex: '1 1 100%' }}
+            variant="h6"
+            id="tableTitle"
+            component="div"
+          >
+            Users
+          </Typography>
+        )}
+  
+        {numSelected > 0 ? (
+          <Tooltip title="Delete">
+            <IconButton onClick={()=>{handledelete(selected)}}>
+              <DeleteIcon />
+            </IconButton>
+          </Tooltip>
+        ) : (
+          <Tooltip title="Filter list">
+            <IconButton>
+              <FilterListIcon />
+            </IconButton>
+          </Tooltip>
+        )}
+      </Toolbar>
+    );
+  }
+  
+  EnhancedTableToolbar.propTypes = {
+    numSelected: PropTypes.number.isRequired,
+  };
   const [refresh, setRefresh] = React.useState(false);
   const [rows, setrows] = React.useState()
   const [orders, setorders] = React.useState()
@@ -217,7 +218,7 @@ const Users = () => {
   const [orderBy, setOrderBy] = React.useState('calories');
   const [selected, setSelected] = React.useState([]);
   const [page, setPage] = React.useState(0);
-  const [dense, setDense] = React.useState(false);
+  const [dense, setDense] = React.useState(true);
   const [loading, setLoading] = React.useState(false);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
   const handleRequestSort = (event, property) => {
@@ -281,16 +282,16 @@ const Users = () => {
         </Box>
         }
       {rows &&
-        <Stack sx={{ padding: '20px', backgroundColor: '#f8f8f8' }}>
-          <Paper sx={{ padding: '20px' }}>
-            <Typography sx={{ padding: '20px', fontWeight: 'bold', fontSize: '26px' }}>Registered Users</Typography>
+        <Stack sx={{ padding: '5px', backgroundColor: '#f8f8f8' }}>
+          <Paper sx={{ padding: '5px' }}>
+            <Typography sx={{ padding: '20px', fontWeight: 'bold', fontSize: '32px' }}>Registered Users</Typography>
             <Divider />
-            <Box sx={{ width: '100%' }}>
-              <Paper sx={{ width: '100%', mb: 2 }}>
+            <Box sx={{ width: '100%',}}>
+              <Paper sx={{ width: '100%', mb: 2, }}>
                 <EnhancedTableToolbar numSelected={selected.length} selected= {selected} setRefresh={setRefresh}/>
-                <TableContainer>
+                <TableContainer sx={{}}>
                   <Table
-                    sx={{ minWidth: 750 }}
+                    sx={{ minWidth:750}}
                     aria-labelledby="tableTitle"
                     size={dense ? 'small' : 'medium'}
                   >
@@ -364,10 +365,10 @@ const Users = () => {
                   onRowsPerPageChange={handleChangeRowsPerPage}
                 />
               </Paper>
-              <FormControlLabel
+              {/* <FormControlLabel
                 control={<Switch checked={dense} onChange={handleChangeDense} />}
                 label="Dense padding"
-              />
+              /> */}
             </Box>
           </Paper>
         </Stack>

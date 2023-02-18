@@ -19,11 +19,12 @@ const Dashboard = () => {
         <>
             {admin ?
                 <>
+                <Stack sx={{}}>
                     <Nav />
-                    <Stack direction="row" sx={{}}>
+                    <Stack direction="row" sx={{ }}>
                         <Menu />
                         <Alertt type={type} msg={msg} alert={alert} setAlert={setAlert}/>
-                        <Stack sx={{ flex: 4 }}>
+                        <Stack sx={{ flex: 4 , '& p,& th,& td,& span':{fontSize:{xs:'0.75rem !important',md:'1rem !important',width:'100%'}},overflowX:'scroll !important' }}>
                             <Routes>
                                 <Route path="" element={<Users />} />
                                 <Route path="messages" element={<Messages />} />
@@ -32,6 +33,7 @@ const Dashboard = () => {
                                 <Route path="users" element={<Users />} />
                             </Routes>
                         </Stack>
+                    </Stack>
                     </Stack>
                 </>
                 :

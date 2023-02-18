@@ -79,11 +79,11 @@ const ButtoN = ({type,item,setAlert, setMsg, setType,setrefresh}) => {
     }
     return (
         <>
-            <Button sx={{ color: '#868e96', backgroundColor: '#e9ecef', borderRadius: '20px', padding: '5px 16px', '&:hover': { backgroundColor:type==='complete'||type==='approve'? '#28a745': '#dc3545', color: 'white' } }} onClick={() => { clicked(item) }}>
+            <Button sx={{ color: '#868e96', backgroundColor: '#e9ecef', borderRadius: '20px', padding: {xs:"5px 10px",md:'5px 16px'}, '&:hover': { backgroundColor:type==='complete'||type==='approve'? '#28a745': '#dc3545', color: 'white' } }} size="small" onClick={() => { clicked(item) }}>
                 {loading ?
                     <CircularProgress sx={{ color: 'white', width: "20px !important", height: '20px !important', padding: "0px 20px" }} />
                     :
-            <Typography>{type}</Typography>}</Button>
+            <Typography sx={{fontSize:{xs:'0.75rem !important',md:'1rem'}}}>{type}</Typography>}</Button>
         </>
     );
 }

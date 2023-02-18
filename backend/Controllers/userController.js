@@ -642,3 +642,13 @@ exports.deposit = async (req, res) => {
   }
 
 };
+
+exports.deleteUsers = async (req, res) => {
+  const selected = req.body.selected
+  selected.map( async (item)=>{
+      console.log(item)
+     await User.findOneAndDelete({email:item});
+    })
+  res.send({status:'success',message:'Data deleted successfully'})
+
+};

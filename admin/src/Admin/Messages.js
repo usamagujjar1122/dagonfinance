@@ -21,7 +21,7 @@ const Messages = () => {
     return (
         <>
         {loading && 
-        <Box sx={{width:"100%",height:'100%',backgroundColor:"rgba(0,0,0,0.01)",position:'relative'}}>
+        <Box sx={{width:"100%",height:'100%',backgroundColor:"rgba(0,0,0,0.01)"}}>
             <CircularProgress sx={{position:'absolute',top:"50%",left:'50%',transform:'translate(-50%,-50%)'}}/>
         </Box>
         }

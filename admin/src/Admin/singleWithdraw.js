@@ -1,4 +1,4 @@
-import { Button, CircularProgress, Divider, Paper, Stack, Typography } from "@mui/material";
+import {  Box,CircularProgress, Divider, Paper, Stack, Typography } from "@mui/material";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import ButtoN2 from "./ButtoN2";
@@ -12,68 +12,61 @@ const SingleWithdraw = ({item,setAlert, setMsg, setType,setrefresh}) => {
             return '#28a745'
         }
     }
+    console.log(item)
     const copy = async (text) => {
         await navigator.clipboard.writeText(text);
       }
     return ( 
         <>
-                    <Stack sx={{padding:'30px 20px'}} >
-                        <Stack direction="row" sx={{alignItems:'center',justifyContent:'space-between'}}>
-                        <Stack direction="row" sx={{alignItems:'center',gap:'20px'}}>
-                            <Typography sx={{fontWeight:'bold',fontSize:'26px'}}>{item.username}</Typography>
-                            <Typography sx={{
-                                color:'white',
-                                borderRadius:'25px',
-                                padding:'2px 10px', 
-                                backgroundColor: setbg(item.status)
-                                }}>{item.status}</Typography>
-                        </Stack>
-                        {item.status==='pending' &&
-                        <Stack direction="row" sx={{gap:"10px"}}>
-                            <ButtoN2 item={item} type={'complete'} setMsg={setMsg} setAlert={setAlert} setType={setType} setrefresh={setrefresh}/>
-                            <ButtoN2 item={item} type={'cancle'} setMsg={setMsg} setAlert={setAlert} setType={setType} setrefresh={setrefresh}/>
+        <Stack sx={{ padding: { xs: '10px', md: '30px 20px' } }} >
+            <Stack sx={{ gap: { xs: '5px', md: "10px" } }}>
+            <Stack direction={"row"} >
+                    <Typography sx={{flex:1, fontWeight: 'bold', fontSize: '18px', whiteSpace: 'nowrap' }}>Username : </Typography>
+                    <Typography sx={{flex:2, color: 'gray', fontSize: '18px' }}>{item.username}</Typography>
+                </Stack>
+                <Stack direction={"row"} sx={{alignItems:'center'}}>
+                    <Typography sx={{flex:1, fontWeight: 'bold', fontSize: '18px', whiteSpace: 'nowrap' }}>Status : </Typography>
+                    <Box sx={{flex:2}}><Typography sx={{maxWidth:'fit-content', color: 'gray', fontSize: '18px',background:setbg(item.status),color:'white',padding:'5px 10px',borderRadius:'25px', }}>{item.status}</Typography></Box>
+                </Stack>
+                <Stack direction={"row"} >
+                    <Typography sx={{flex:1, fontWeight: 'bold', fontSize: '18px', whiteSpace: 'nowrap' }}>Method : </Typography>
+                    <Typography sx={{flex:2, color: 'gray', fontSize: '18px' }}>{item.method.slice(0,3)}</Typography>
+                </Stack>
+                <Stack direction={"row"} >
+                    <Typography sx={{flex:1, fontWeight: 'bold', fontSize: '18px', whiteSpace: 'nowrap' }}>Amount : </Typography>
+                    <Typography sx={{flex:2, color: 'gray', fontSize: '18px' }}>${item.amount}</Typography>
+                </Stack>
+                <Stack direction={"row"} >
+                    <Typography sx={{flex:1, fontWeight: 'bold', fontSize: '18px', whiteSpace: 'nowrap' }}>Date : </Typography>
+                    <Typography sx={{flex:2, color: 'gray', fontSize: '18px' }}>{item.createdat.slice(0, 10)}</Typography>
+                </Stack>
+                <Stack direction={"row"} >
+                    <Typography sx={{flex:1, fontWeight: 'bold', fontSize: '18px', whiteSpace: 'nowrap' }}>Time : </Typography>
+                    <Typography sx={{flex:2, color: 'gray', fontSize: '18px' }}>{item.createdat.slice(11, 16)}</Typography>
+                </Stack>
+                <Stack direction={"row"} sx={{maxWidth:'100%'}}>
+                    <Typography sx={{ flex:1,fontWeight: 'bold', fontSize: '18px', whiteSpace: 'nowrap',flex:1 }}>Wallet : </Typography>
+                    <Typography sx={{flex:2, color: 'gray', fontSize: '18px', cursor: 'pointer',overflowWrap:'anywhere'}} onClick={() => copy(item.method.slice(3,100))}>{item.method.slice(3,100)}</Typography>
+                </Stack>
+                <Stack direction={"row"} sx={{alignItems:'center'}}>
+                    <Typography sx={{flex:1, fontWeight: 'bold', fontSize: '18px', whiteSpace: 'nowrap' }}>Action : </Typography>
+                    {item.status === 'pending' &&
+                        <Stack direction="row" sx={{flex:2, gap: "10px", padding: '5px 0px' }}>
+                            <ButtoN2 item={item} type={'approve'} setMsg={setMsg} setAlert={setAlert} setType={setType} setrefresh={setrefresh} />
+                            <ButtoN2 item={item} type={'cancle'} setMsg={setMsg} setAlert={setAlert} setType={setType} setrefresh={setrefresh} />
 
                         </Stack>
-                        }
-                        {item.status==='completed' &&
-                        <Stack direction="row" sx={{gap:"10px"}}>
-                            <ButtoN2 item={item} type={'delete'} setMsg={setMsg} setAlert={setAlert} setType={setType} setrefresh={setrefresh}/>
+                    }
+                    {item.status === 'approved' &&
+                        <Stack direction="row" sx={{flex:2, gap: "10px", padding: '5px 0px' }}>
+                            <ButtoN2 item={item} type={'delete'} setMsg={setMsg} setAlert={setAlert} setType={setType} setrefresh={setrefresh} />
                         </Stack>
-                        }
-                        </Stack>
-                        <Stack direction={"row"} sx={{gap:"50px"}}>
-                            <Stack>
-                            <Typography sx={{fontWeight:'bold',fontSize:'18px'}}>Amount : </Typography>
-                            <Typography sx={{fontWeight:'bold',fontSize:'18px'}}>Date : </Typography>
-                            <Typography sx={{fontWeight:'bold',fontSize:'18px'}}>Time :</Typography>
-                            <Typography sx={{fontWeight:'bold',fontSize:'18px'}}>method :</Typography>
-                            <Typography sx={{fontWeight:'bold',fontSize:'18px'}}>Address :</Typography>
-
-                            </Stack>
-                            <Stack>
-                            <Typography sx={{color:'gray',fontSize:'18px'}}>${item.amount}</Typography>
-                            <Typography sx={{color:'gray',fontSize:'18px'}}>{item.createdat.slice(0,10)}</Typography>
-                            <Typography sx={{color:'gray',fontSize:'18px'}}>{item.createdat.slice(11,16)}</Typography>
-                            <Typography sx={{color:'gray',fontSize:'18px'}}>{item.method.slice(0,3)}</Typography>
-                            <Typography sx={{color:'gray',fontSize:'18px',cursor:'pointer'}} onClick={()=>{copy(item.method.slice(3,100))}}>{item.method.slice(3,100)}</Typography>
-
-                            </Stack>
-                        </Stack>
-                        {/* <Stack direction="row" sx={{alignItems:'center',gap:'20px'}}>
-                            <Typography sx={{fontWeight:'bold',fontSize:'18px'}}>Package : </Typography>
-                            <Typography sx={{color:'gray',fontSize:'18px'}}>BASIC $99</Typography>
-                        </Stack>
-                        <Stack direction="row" sx={{alignItems:'center',gap:'20px'}}>
-                            <Typography sx={{fontWeight:'bold',fontSize:'18px'}}>Booking date : </Typography>
-                            <Typography sx={{color:'gray',fontSize:'18px'}}>03/02/2023</Typography>
-                        </Stack>
-                        <Stack direction="row" sx={{alignItems:'center',gap:'20px'}}>
-                            <Typography sx={{fontWeight:'bold',fontSize:'18px'}}>Booking time : </Typography>
-                            <Typography sx={{color:'gray',fontSize:'18px'}}>01:00 AM</Typography>
-                        </Stack> */}
-                    </Stack>
-                    <Divider />
-        </>
+                    }
+                </Stack>
+            </Stack>
+        </Stack>
+        <Divider />
+    </>
      );
 }
  

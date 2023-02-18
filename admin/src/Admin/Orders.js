@@ -26,9 +26,9 @@ const OrdersAD = ({ setAlert, setMsg, setType }) => {
         </Box>
         }
         {orders && 
-        <Stack sx={{padding:'20px',backgroundColor:'#f8f8f8'}}>
+        <Stack sx={{padding:{xs:'5px',md:'20px'},backgroundColor:'#f8f8f8'}}>
                 <Paper>
-                    <Typography sx={{padding:'20px',fontWeight:'bold',fontSize:'26px'}}>Orders List</Typography>
+                    <Typography sx={{padding:{xs:'10px',md:'20px'},fontWeight:'bold',fontSize:'26px'}}>Deposit Requests</Typography>
                     <Divider />
                     {orders.map((item)=>
                     ( <SingleOrder item={item} setMsg={setMsg} setAlert={setAlert} setType={setType} setrefresh={setrefresh} key={item._id} />))}
