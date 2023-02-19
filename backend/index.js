@@ -9,7 +9,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cors());
 
-app.use("/user", userRoutes);
+// app.use("/user", userRoutes);
 // mongoose
 //   .connect("mongodb://0.0.0.0:27017/crypto", { useNewUrlParser: true })
 //   .then(() => {
