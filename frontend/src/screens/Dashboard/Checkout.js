@@ -1,4 +1,4 @@
-import { Button, Stack, Typography } from "@mui/material";
+import { Button, CircularProgress, Stack, Typography } from "@mui/material";
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -6,6 +6,7 @@ import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import { deposit, request } from "../../Redux/action/userActions";
 const Checkout = ({setrefresh}) => {
     const user  = useSelector((state)=>state.user.user)
+    const isLoading  = useSelector((state)=>state.user.isLoading)
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const md = useMediaQuery('(min-width:800px)');
@@ -68,7 +69,10 @@ const Checkout = ({setrefresh}) => {
                             </Stack>
                     </Stack>
                     <Stack direction="row" sx={{ gap:'20px',marginTop:'20px'}}>
-                    <Button sx={{background:"linear-gradient(to right,rgba(0,187,170,1),rgba(53,197,85,1))",width:"fit-content",color:'white',borderRadius:'25px',padding:"10px 20px",'&:hover':{boxShadow:'2px 5px 14px 0px rgba(0,0,0,0.75);',background:"linear-gradient(to left,rgba(0,187,170,1),rgba(53,197,85,1))"},fontWeight:'bold'}} onClick={handleclick}>SAVE</Button>
+                    <Button sx={{background:"linear-gradient(to right,rgba(0,187,170,1),rgba(53,197,85,1))",width:"fit-content",color:'white',borderRadius:'25px',padding:"10px 20px",'&:hover':{boxShadow:'2px 5px 14px 0px rgba(0,0,0,0.75);',background:"linear-gradient(to left,rgba(0,187,170,1),rgba(53,197,85,1))"},fontWeight:'bold'}} onClick={handleclick} disable={isLoading}>
+                    {!isLoading &&<Typography sx={{fontSize:{xs:'12px',md:'16px'}}}>LOGIN</Typography>}
+                    {isLoading &&<CircularProgress sx={{color:'white', width: "24px !important", height: '24px !important', padding: "0px 8px"}} />}
+                    </Button>
                     <Button sx={{background:"linear-gradient(to right,rgba(0,187,170,1),rgba(53,197,85,1))",width:"fit-content",color:'white',borderRadius:'25px',padding:"10px 20px",'&:hover':{boxShadow:'2px 5px 14px 0px rgba(0,0,0,0.75);',background:"linear-gradient(to left,rgba(0,187,170,1),rgba(53,197,85,1))"},fontWeight:'bold'}} onClick={()=>navigate('/dashboard')}>CANCLE</Button>
                     </Stack>
 

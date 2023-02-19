@@ -1,4 +1,4 @@
-import { Box, Button, Stack, Typography } from "@mui/material";
+import { Box, Button, CircularProgress, Stack, Typography } from "@mui/material";
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -6,10 +6,10 @@ import { Link, useNavigate } from "react-router-dom";
 import { login } from "../../Redux/action/userActions";
 const Login = () => {
     const dispatch = useDispatch()
+    const isLoading = useSelector(state=>state.user.isLoading)
     const md = useMediaQuery('(min-width:800px)');
     const [username,setusername] = useState()
     const [password,setpassword] = useState()
-    const date = new Date().toLocaleString()
     const navigate = useNavigate()
     const handleclick = () => {
         const formdata = {
@@ -18,9 +18,6 @@ const Login = () => {
         }
         dispatch(login(formdata,navigate))
     }
-    useEffect(()=>{
-        console.log(date)
-    })
     return (
         <>
         
@@ -39,14 +36,19 @@ const Login = () => {
                         <input type="password" style={{width:'70%', padding:'10px', border: 'none', outline: 'none', width: '95%',borderRadius:'5px',fontWeight:'600' }} value={password} onChange={(e)=>{setpassword(e.target.value)}}/>
                     </Stack>
                     <Stack direction="row" sx={{alignItems:'center',justifyContent:'space-between',width:{xs:'100%',md:'90%'}}}>
-                    <Button sx={{background:"linear-gradient(to right,rgba(0,187,170,1),rgba(53,197,85,1))",width:"fit-content",color:'white',borderRadius:'25px',padding:"10px 20px",'&:hover':{boxShadow:'2px 5px 14px 0px rgba(0,0,0,0.75);',background:"linear-gradient(to left,rgba(0,187,170,1),rgba(53,197,85,1))"},fontWeight:'bold'}} onClick={handleclick}>LOGIN</Button>
+                    <Button sx={{background:"linear-gradient(to right,rgba(0,187,170,1),rgba(53,197,85,1))",width:"fit-content",color:'white',borderRadius:'25px',padding:"10px 20px",'&:hover':{boxShadow:'2px 5px 14px 0px rgba(0,0,0,0.75);',background:"linear-gradient(to left,rgba(0,187,170,1),rgba(53,197,85,1))"},fontWeight:'bold'}} onClick={handleclick} disabled={isLoading}>
+                    {!isLoading &&<Typography sx={{fontSize:{xs:'12px',md:'16px'}}}>LOGIN</Typography>}
+                    {isLoading &&<CircularProgress sx={{color:'white', width: "24px !important", height: '24px !important', padding: "0px 8px"}} />}
+                    </Button>
                     <Link to="/forgot" style={{textDecoration:'none'}}><Typography sx={{color:'#03bca6','&:hover':{color:'white'},cursor:'pointer'}}>Retrive password?</Typography></Link>
                     </Stack>
                 </Stack>
             </Stack>
             <Stack sx={{ background: 'linear-gradient(90deg, rgba(0,187,170,1) 0%, rgba(53,197,85,1) 100%)', padding: { xs: "20px 10px", md: "30px" }, alignItems: 'center' }}>
             <Typography sx={{color:'white',fontWeight:'bold',fontSize:{xs:'20px',md:'30px'}}}>IF YOU ARE NEW TO DAGON FINANCE</Typography>
-            <Link to="/register" style={{textDecoration:'none'}}><Button sx={{background:"linear-gradient(to right,rgba(0,187,170,1),rgba(53,197,85,1))",width:"fit-content",color:'white',borderRadius:'25px',padding:"10px 20px",'&:hover':{boxShadow:'2px 5px 14px 0px rgba(0,0,0,0.75);',background:"linear-gradient(to left,rgba(0,187,170,1),rgba(53,197,85,1))"},fontWeight:'bold'}}>SIGNUP</Button></Link>
+            <Link to="/register" style={{textDecoration:'none'}}><Button sx={{background:"linear-gradient(to right,rgba(0,187,170,1),rgba(53,197,85,1))",width:"fit-content",color:'white',borderRadius:'25px',padding:"10px 20px",'&:hover':{boxShadow:'2px 5px 14px 0px rgba(0,0,0,0.75);',background:"linear-gradient(to left,rgba(0,187,170,1),rgba(53,197,85,1))"},fontWeight:'bold'}}>
+                SIGNUP
+             </Button></Link>
             
             </Stack>
             </>

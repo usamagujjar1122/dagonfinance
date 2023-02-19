@@ -1,4 +1,4 @@
-import { Button, Stack, Typography } from "@mui/material";
+import { Button, CircularProgress, Stack, Typography } from "@mui/material";
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { edit } from "../../Redux/action/userActions";
 const Edit = ({setrefresh}) => {
     const user = useSelector(state=>state.user.user)
+    const isLoading = useSelector(state=>state.user.isLoading)
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const md = useMediaQuery('(min-width:1100px)');
@@ -45,7 +46,10 @@ const Edit = ({setrefresh}) => {
                         <Typography sx={{width:'30%' ,color:'white',fontSize:{xs:"12px",md:'14px'}}}>BEP20 - BNB Wallet Address:</Typography>
                         <input type="text" style={{ padding:'10px', border: 'none', outline: 'none', width: '95%',borderRadius:'5px',fontWeight:'600' }} value={bnbaddress} onChange={(e)=>{setbnbaddress(e.target.value)}}/>
                     </Stack>
-                    <Button sx={{marginTop:'10px',background:"linear-gradient(to right,rgba(0,187,170,1),rgba(53,197,85,1))",width:"fit-content",color:'white',borderRadius:'25px',padding:"10px 20px",'&:hover':{boxShadow:'2px 5px 14px 0px rgba(0,0,0,0.75);',background:"linear-gradient(to left,rgba(0,187,170,1),rgba(53,197,85,1))"},fontWeight:'bold',margin:'auto'}} onClick={handleclick}>CHANGE DATA</Button>
+                    <Button sx={{marginTop:'10px',background:"linear-gradient(to right,rgba(0,187,170,1),rgba(53,197,85,1))",width:"fit-content",color:'white',borderRadius:'25px',padding:"10px 20px",'&:hover':{boxShadow:'2px 5px 14px 0px rgba(0,0,0,0.75);',background:"linear-gradient(to left,rgba(0,187,170,1),rgba(53,197,85,1))"},fontWeight:'bold',margin:'auto'}} onClick={handleclick} disabled={isLoading}>
+                    {!isLoading &&<Typography sx={{fontSize:{xs:'12px',md:'16px'}}}>LOGIN</Typography>}
+                    {isLoading &&<CircularProgress sx={{color:'white', width: "24px !important", height: '24px !important', padding: "0px 8px"}} />}
+                    </Button>
                 </Stack>
             </Stack>
         }

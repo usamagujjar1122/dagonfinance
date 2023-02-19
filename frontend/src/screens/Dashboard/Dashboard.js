@@ -49,6 +49,7 @@ const Dashboard = () => {
                     <Route path="/edit" element={<Edit setrefresh={setrefresh}/>} />
                     <Route path="/checkout" element={<Checkout setrefresh={setrefresh}/>} />
                     <Route path="/calculate" element={<Calculator />} />
+                    <Route path="*" element={<Account />} />
                 </Routes>
             </Stack>
             </>

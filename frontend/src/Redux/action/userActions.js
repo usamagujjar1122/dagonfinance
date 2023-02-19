@@ -9,6 +9,8 @@ import {
   DEPOSITS_LIST_LOADED,
   REFERAL_LIST_LOADED,
   HISTORY_LOADED,
+  LOADING,
+  SET_LOADING,
 } from "../types";
 
 import { setAlert } from "./alertactions";
@@ -83,31 +85,48 @@ export const loadhistory = (user) => async (dispatch) => {
 
 export const signup = (formdata, navigate) => async (dispatch) => {
   try {
+    dispatch({
+      type: LOADING,
+    });
     const res = await axios.post(`${URL}/user/signup`, formdata);
     dispatch({
       type: REGISTER_SUCCESS,
       payload: res.data,
     });
+    dispatch({
+      type: SET_LOADING,
+    });
     navigate("/login");
     dispatch(setAlert(res.data.message, "success"));
   } catch (err) {
-    console.log(err.response.data);
     dispatch(setAlert(err.response.data.message, "error"));
+    dispatch({
+      type: SET_LOADING,
+    });
   }
 };
 
 export const login = (formData,navigate) => async (dispatch) => {
   try {
+    dispatch({
+      type: LOADING,
+    });
     const res = await axios.post(`${URL}/user/login`, formData);
-    localStorage.setItem("dftoken", res.data.token);
     dispatch({
       type: LOGIN_SUCCESS,
       payload: res.data,
+    });
+    localStorage.setItem("dftoken", res.data.token);
+    dispatch({
+      type: SET_LOADING,
     });
     navigate('/dashboard')
     dispatch(setAlert(res.data.message, "success"));
   } catch (err) {
     dispatch(setAlert(err.response.data.message, "error"));
+    dispatch({
+      type: SET_LOADING,
+    });
   }
 };
 
@@ -125,51 +144,79 @@ export const logout = () => async (dispatch) => {
 };
 export const edit = (formdata, navigate,setrefresh) => async (dispatch) => {
   try {
+    dispatch({
+      type: LOADING,
+    });
     const res = await axios.post(`${URL}/user/edit`, formdata);
     navigate("/dashboard",{replace:true});
     dispatch(setAlert(res.data.message, "success"));
     setrefresh(prev=>!prev)
   } catch (err) {
     dispatch(setAlert(err.response.data.message, "error"));
+    dispatch({
+      type: SET_LOADING,
+    });
   }
 };
 export const withdrawcommision = (formdata,setrefresh) => async (dispatch) => {
   try {
+    dispatch({
+      type: LOADING,
+    });
     const res = await axios.post(`${URL}/user/withdrawcommision`, formdata);
-    // navigate("/dashboard",{replace:true});
     dispatch(setAlert(res.data.message, "success"));
     setrefresh(prev=>!prev)
   } catch (err) {
     dispatch(setAlert(err.response.data.message, "error"));
+    dispatch({
+      type: SET_LOADING,
+    });
   }
 };
 export const deposit = (formdata, navigate,setrefresh) => async (dispatch) => {
   try {
+    dispatch({
+      type: LOADING,
+    });
     const res = await axios.post(`${URL}/user/deposit`, formdata);
     navigate("/dashboard",{replace:true});
     dispatch(setAlert(res.data.message, "success"));
     setrefresh(prev=>!prev)
   } catch (err) {
     dispatch(setAlert(err.response.data.message, "error"));
+    dispatch({
+      type: SET_LOADING,
+    });
   }
 };
 export const withdraw = (formdata, navigate,setrefresh) => async (dispatch) => {
   try {
+    dispatch({
+      type: LOADING,
+    });
     const res = await axios.post(`${URL}/user/withdraw`, formdata);
     navigate("/dashboard",{replace:true});
     dispatch(setAlert(res.data.message, "success"));
     setrefresh(prev=>!prev)
   } catch (err) {
-    dispatch(setAlert(err.response.data.message, "error"));
+    dispatch(setAlert(err.response.data.message, "error"));dispatch({
+      type: SET_LOADING,
+    });
   }
 };
 export const request = (formdata, navigate,setrefresh) => async (dispatch) => {
   try {
+    dispatch({
+      type: LOADING,
+    });
     const res = await axios.post(`${URL}/user/request`, formdata);
     navigate("/dashboard",{replace:true});
     dispatch(setAlert(res.data.message, "success"));
     setrefresh(prev=>!prev)
   } catch (err) {
     dispatch(setAlert(err.response.data.message, "error"));
+    dispatch({
+      type: SET_LOADING,
+    });
   }
 };

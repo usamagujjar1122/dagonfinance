@@ -8,24 +8,24 @@ import Select from '@mui/material/Select';
 import { useEffect, useState } from "react";
 const Calculator = () => {
     const md = useMediaQuery('(min-width:1100px)');
-    const [v, setv] = useState('15% after 24 hours');
+    const [v, setv] = useState('5% after 2 days');
     const [a,seta] = useState(0)
     const [f,setf] = useState(15)
     const [profit,setprofit] = useState()
     const handleChange = (event) => {
       setv(event.target.value);
       switch (event.target.value) {
-        case '15% after 24 hours':
-            setf(15)
+        case '5% after 2 days':
+            setf(5)
             break;
-            case '20.2% after 24 hours':
-                setf(20.2)
+            case '8% after 2 days':
+                setf(8)
             break;
-            case '35% after 2 days':
-                setf(35)
+            case '10% after 3 days':
+                setf(10)
             break;
-            case '45% after 1 week':
-                setf(45)
+            case '15% after 1 week':
+                setf(15)
             break;
       
         default:
@@ -50,12 +50,12 @@ const Calculator = () => {
                             displayEmpty
                             sx={{'&>div':{color:'white'}}}
                         >
-                            <MenuItem value={'15% after 24 hours'}>
-                            15% after 24 hours
+                            <MenuItem value={'5% after 2 days'}>
+                            5% after 2 days
                             </MenuItem>
-                            <MenuItem value={'20.2% after 24 hours'}>20.2% after 24hours</MenuItem>
-                            <MenuItem value={'35% after 2 days'}>35% after 2 days</MenuItem>
-                            <MenuItem value={'45% after 1 week'}>45% after 1 week</MenuItem>
+                            <MenuItem value={'8% after 2 days'}>8% after 2 days</MenuItem>
+                            <MenuItem value={'10% after 3 days'}>10% after 3 days</MenuItem>
+                            <MenuItem value={'15% after 1 week'}>15% after 1 week</MenuItem>
                         </Select>
                     </FormControl>
                     <Stack direction="row" sx={{ gap: '20px' }}>

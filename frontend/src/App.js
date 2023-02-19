@@ -18,7 +18,6 @@ import Alert from './comp/alerts'
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import {  loadUser } from './Redux/action/userActions';
-import Verify from './screens/Verify';
 function App() {
   const dispatch = useDispatch()
   const auth = useSelector((state)=>state.user.isAuthorized)
@@ -43,7 +42,6 @@ function App() {
     <Route path="/register" element={auth ? <Navigate to ="/"/>  : <Register />} />
     <Route path="/login" element={auth ? <Navigate to ="/"/>  : <Login />} />
     <Route path="/forgot" element={<Forgot />} />
-    <Route path="/verify" element={<Verify />} />
     <Route path="*" element={<Navigate to= "/" />} />
     <Route path="/dashboard/*" element={!auth ? <Navigate to ="/"/>  : <Dashboard />} />
     </Routes>

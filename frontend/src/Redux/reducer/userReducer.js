@@ -7,12 +7,14 @@ import {
   DEPOSITS_LIST_LOADED,
   REFERAL_LIST_LOADED,
   HISTORY_LOADED,
+  LOADING,
+  SET_LOADING,
 } from "../types";
 
 const initialState = {
   token: localStorage.getItem('dftoken'),
   isAuthorized: localStorage.getItem('dftoken')? true: false,
-  isLoading: true,
+  isLoading: false,
   user: null,
   deposits: null,
   referals: null,
@@ -27,6 +29,16 @@ export default function (state = initialState, action) {
         isAuthorized: true,
         isLoading: false,
       };
+      case LOADING:
+      return {
+        ...state,
+       isLoading:true
+      };
+      case SET_LOADING:
+        return {
+          ...state,
+         isLoading:false
+        };
     case DEPOSITS_LOADED:
       return {
         ...state,
@@ -67,7 +79,7 @@ export default function (state = initialState, action) {
       return {
         ...state,
         registerstatus: action.payload,
-        inprogress: false,
+        isLoading: false,
         notification: action.payload.message,
         nextstep: true,
       };

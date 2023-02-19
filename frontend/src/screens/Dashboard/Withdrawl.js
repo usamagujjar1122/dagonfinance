@@ -1,4 +1,4 @@
-import { Button, Divider, Radio, Stack, Typography } from "@mui/material";
+import { Button, CircularProgress, Divider, Radio, Stack, Typography } from "@mui/material";
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useState,useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
@@ -10,8 +10,9 @@ const Withdrawl = ({setrefresh}) => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const md = useMediaQuery('(min-width:800px)');
-    const [selectedValue, setSelectedValue] = useState('BTC');
+    const [selectedValue, setSelectedValue] = useState();
     const user = useSelector((state)=>state.user.user)
+    const isLoading = useSelector((state)=>state.user.isLoading)
     const [amount,setamount] = useState()
     const [history,sethistory] = useState()
     const handleChange = (event) => {
@@ -138,7 +139,10 @@ const Withdrawl = ({setrefresh}) => {
                     <Stack sx={{alignItems:'center',padding:"20px 0px",gap:'10px'}}>
                     <Typography sx={{ fontSize: { md: '18px' }, color: 'white',fontWeight:'600' }}>ENTER AMOUNT</Typography>
                     <input type="number" style={{  color: 'white', fontSize: '28px', padding: '8px', fontWeight: 'bold', textAlign: 'center', border: 'none', outline: 'none', width: '95%', borderRadius: '5px', backgroundColor: '#05bca6' }} value={amount} onChange={(e)=>{setamount(e.target.value)}} />
-                    <Button sx={{marginTop:'10px',background:"linear-gradient(to right,rgba(0,187,170,1),rgba(53,197,85,1))",width:"fit-content",color:'white',borderRadius:'25px',padding:"10px 20px",'&:hover':{boxShadow:'2px 5px 14px 0px rgba(0,0,0,0.75);',background:"linear-gradient(to left,rgba(0,187,170,1),rgba(53,197,85,1))"},fontWeight:'bold'}} onClick={handlewithdraw}>WITHDRAW</Button>
+                    <Button sx={{marginTop:'10px',background:"linear-gradient(to right,rgba(0,187,170,1),rgba(53,197,85,1))",width:"fit-content",color:'white',borderRadius:'25px',padding:"10px 20px",'&:hover':{boxShadow:'2px 5px 14px 0px rgba(0,0,0,0.75);',background:"linear-gradient(to left,rgba(0,187,170,1),rgba(53,197,85,1))"},fontWeight:'bold'}} onClick={handlewithdraw} disabled={isLoading}>
+                    {!isLoading &&<Typography sx={{fontSize:{xs:'12px',md:'16px'}}}>WITHDRAW</Typography>}
+                    {isLoading &&<CircularProgress sx={{color:'white', width: "24px !important", height: '24px !important', padding: "0px 8px"}} />}
+                    </Button>
                     </Stack>
                 </Stack>
                 { history &&

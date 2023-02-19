@@ -70,13 +70,13 @@ const Navbar = () => {
                         { user ? 
                         <>
                         <Link to="/dashboard" style={{textDecoration:'none'}}><Button sx={{ backgroundImage: 'url(img/loginbg.png)', backgroundSize: 'cover', transition: 'transform 0.5s', '&:hover': { transform: 'translateX(-20px)' } }}>
-                            <Stack direction="row" sx={{ alignItems: 'center', padding: "0px 10px" }}>
+                            <Stack direction="row" sx={{ alignItems: 'center', padding: {xs:'0px 5px',md:"0px 10px"} }}>
                                 <PersonIcon sx={{ color: 'white' ,fontSize:{xs:'16px',md:'24px'}}} />
                                 <Typography sx={{ color: 'white', fontWeight: '600', fontSize:{xs:'10px',md:'14px'}, whiteSpace: 'nowrap' }}>DASHBOARD</Typography>
                             </Stack>
                         </Button></Link>
                         <Button sx={{ backgroundImage: 'url(img/signupbg.png)', backgroundSize: 'cover', transition: 'transform 0.5s', '&:hover': { transform: 'translateX(-20px)' } }} onClick={logoutt}>
-                            <Stack direction="row" sx={{ alignItems: 'center', padding: "0px 10px" }}>
+                            <Stack direction="row" sx={{ alignItems: 'center', padding: {xs:'0px 5px',md:"0px 10px"} }}>
                                 <PersonIcon sx={{ color: 'white' ,fontSize:{xs:'16px',md:'24px'}}} />
                                 <Typography sx={{ color: 'white', fontWeight: '600', fontSize:{xs:'10px',md:'14px'}, whiteSpace: 'nowrap' }}>LOGOUT</Typography>
                             </Stack>
@@ -84,13 +84,13 @@ const Navbar = () => {
                         </>
                         : <>
                     <Link to="/login" style={{textDecoration:'none'}}><Button sx={{ backgroundImage: 'url(img/loginbg.png)', backgroundSize: 'cover', transition: 'transform 0.5s', '&:hover': { transform: 'translateX(-20px)' } }}>
-                            <Stack direction="row" sx={{ alignItems: 'center', padding: "0px 10px" }}>
+                            <Stack direction="row" sx={{ alignItems: 'center', padding: {xs:'0px 5px',md:"0px 10px"} }}>
                                 <PersonIcon sx={{ color: 'white' ,fontSize:{xs:'16px',md:'24px'}}} />
                                 <Typography sx={{ color: 'white', fontWeight: '600', fontSize:{xs:'10px',md:'14px'}, whiteSpace: 'nowrap' }}>MEMBER LOGIN</Typography>
                             </Stack>
                         </Button></Link>
                         <Link to="/register" style={{textDecoration:'none'}}><Button sx={{ backgroundImage: 'url(img/signupbg.png)', backgroundSize: 'cover', transition: 'transform 0.5s', '&:hover': { transform: 'translateX(-20px)' } }}>
-                            <Stack direction="row" sx={{ alignItems: 'center', padding: "0px 10px" }}>
+                            <Stack direction="row" sx={{ alignItems: 'center', padding: {xs:'0px 5px',md:"0px 10px"} }}>
                                 <PersonIcon sx={{ color: 'white' ,fontSize:{xs:'16px',md:'24px'}}} />
                                 <Typography sx={{ color: 'white', fontWeight: '600', fontSize:{xs:'10px',md:'14px'}, whiteSpace: 'nowrap' }}>OPEN ACCOUNT</Typography>
                             </Stack>

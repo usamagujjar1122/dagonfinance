@@ -1,4 +1,4 @@
-import { Box, Button, Stack, Typography } from "@mui/material";
+import { CircularProgress, Button, Stack, Typography } from "@mui/material";
 import useMediaQuery from '@mui/material/useMediaQuery';
 import {useNavigate} from "react-router-dom";
 import axios from "axios";
@@ -6,10 +6,12 @@ import { useState } from "react";
 import { URL } from '../../url'
 import { useDispatch, useSelector } from "react-redux";
 import { setAlert } from "../../Redux/action/alertactions";
+import { LOADING, SET_LOADING } from "../../Redux/types";
 const Forgot = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const md = useMediaQuery('(min-width:800px)');
+    const isLoading = useSelector(state=>state.user.isLoading)
     const [email, setemail] = useState()
     const [password, setpassword] = useState()
     const [repass, setrepass] = useState()
@@ -18,14 +20,23 @@ const Forgot = () => {
     const [data, setdata] = useState()
     const handleemail = async () => {
         try {
+            dispatch({
+                type: LOADING,
+              });
             const res = await axios.post(`${URL}/user/forgot`, { email: email })
             if (res.data.success) {
                 dispatch(setAlert(res.data.message, "success"))
+                dispatch({
+                    type: SET_LOADING,
+                  });
                 setdata(res.data.data)
             }
+
         } catch (err) {
-            console.log(err)
             dispatch(setAlert(err.response.data.message, "error"))
+            dispatch({
+                type: SET_LOADING,
+              });
         }
     }
     const handlesecret = async () => {
@@ -38,14 +49,23 @@ const Forgot = () => {
     }
     const handlereset = async () =>{
         try {
+            dispatch({
+                type: LOADING,
+              });
             const res = await axios.post(`${URL}/user/reset`, { email:email,password: password,repass: repass })
             if (res.data.success) {
                 dispatch(setAlert(res.data.message, "success"))
+                dispatch({
+                    type: SET_LOADING,
+                  });
                 navigate('/login')
             }
         } catch (err) {
             console.log(err)
             dispatch(setAlert(err.response.data.message, "error"))
+            dispatch({
+                type: SET_LOADING,
+              });
         }
     }
     return (
@@ -63,7 +83,10 @@ const Forgot = () => {
                                 <Typography sx={{ width: '30%', color: 'white', fontSize: { xs: "12px", md: '16px' } }}>Email:</Typography>
                                 <input type="text" style={{ width: '70%', padding: '10px', border: 'none', outline: 'none', width: '95%', borderRadius: '5px', fontWeight: '600' }} value={email} onChange={(e) => { setemail(e.target.value) }} />
                             </Stack>
-                            <Button sx={{ background: "linear-gradient(to right,rgba(0,187,170,1),rgba(53,197,85,1))", width: "fit-content", color: 'white', borderRadius: '25px', padding: "10px 20px", '&:hover': { boxShadow: '2px 5px 14px 0px rgba(0,0,0,0.75);', background: "linear-gradient(to left,rgba(0,187,170,1),rgba(53,197,85,1))" }, fontWeight: 'bold' }} onClick={handleemail}>SEND</Button>
+                            <Button sx={{ background: "linear-gradient(to right,rgba(0,187,170,1),rgba(53,197,85,1))", width: "fit-content", color: 'white', borderRadius: '25px', padding: "10px 20px", '&:hover': { boxShadow: '2px 5px 14px 0px rgba(0,0,0,0.75);', background: "linear-gradient(to left,rgba(0,187,170,1),rgba(53,197,85,1))" }, fontWeight: 'bold' }} onClick={handleemail} disabled = {isLoading}>
+                            {!isLoading &&<Typography sx={{fontSize:{xs:'12px',md:'16px'}}}>SEND</Typography>}
+                    {isLoading &&<CircularProgress sx={{color:'white', width: "24px !important", height: '24px !important', padding: "0px 8px"}} />}
+                            </Button>
                         </Stack>
                     </Stack>
                 </>

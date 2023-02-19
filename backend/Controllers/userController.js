@@ -118,7 +118,7 @@ exports.signup = async (req, res) => {
           html: `
               <h4>Hi, ${name}</h4>
               <p>Please click the button below to verify your email address </p>
-              <a href=${process.env.FRONTEND_URL}/verify?token=${token}><button style=background-color:#87CEEB;color:white;padding:5px;border:none;border-radius:5px>Verify Email Address</button></a>
+              <a href=${process.env.FRONTEND_URL}?token=${token}><button style=background-color:#87CEEB;color:white;padding:5px;border:none;border-radius:5px;cursor:pointer; >Verify Email Address</button></a>
               <h4>If you did not create an account, no further action is required</h4>
               <p style=font-weight:'bold;background-color:'silver'>@ DAGON FINANCE 2023</p>
               `
@@ -138,12 +138,12 @@ exports.login = async (req, res) => {
     const { username, password } = req.body;
     if (!username) {
       return res
-        .status(201)
+        .status(400)
         .json({ success: false, message: "Please Enter Email" });
     }
     if (!password) {
       return res
-        .status(201)
+        .status(400)
         .json({ success: false, message: "Please Enter Password" });
     }
     const user = await User.findOne({ username: username });
@@ -200,7 +200,7 @@ exports.verify = async (req, res) => {
     var data = jwt_decode(token);
     try {
       await User.findOneAndUpdate({email:data.email},{isverified:true})
-    res.status(200).json({ success: true, message: "Email Verified Successfully" })
+      res.status(200).json({ success: true, message: "Email Verified Successfully" })
     } catch (error) {
       console.log(error)
       res.send({ success: false, message: "Email Verification failed" })

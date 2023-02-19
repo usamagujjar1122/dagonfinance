@@ -1,7 +1,23 @@
 import { Box, Button, Grid, Paper, Stack, Typography } from "@mui/material";
-import { Link } from "react-router-dom";
-
+import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { Link, useSearchParams } from "react-router-dom";
+import { setAlert } from "../Redux/action/alertactions";
+import axios from 'axios';
 const Home = () => {
+    const [searchParams] = useSearchParams()
+    const dispatch = useDispatch()
+    const token = searchParams.get('token')
+    useEffect(()=>{
+        const verify = async () => {
+            const res = await axios.post(`http://localhost:5000/user/verify`,{token:token})
+            console.log(res.data)
+            dispatch(setAlert(res.data.message,res.data.status))
+        }
+        if(token){
+            verify()
+        }
+    },[])
     return ( 
         <>
             <Stack sx={{}}>

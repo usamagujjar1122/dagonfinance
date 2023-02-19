@@ -1,8 +1,8 @@
-import { Button, Stack, Typography } from "@mui/material";
+import { Button, CircularProgress, Stack, Typography } from "@mui/material";
 import useMediaQuery from '@mui/material/useMediaQuery';
 import {  useState } from "react";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { signup } from "../../Redux/action/userActions";
 const Register = () => {
     const md = useMediaQuery('(min-width:800px)');
@@ -19,6 +19,7 @@ const Register = () => {
     const [usdtaddress,setusdtaddress] = useState()
     const [bnbaddress,setbnbaddress] = useState()
     const [checked,setchecked] = useState(false)
+    const isLoading = useSelector(state=>state.user.isLoading)
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const [searchParams] = useSearchParams()
@@ -104,7 +105,9 @@ const Register = () => {
                         <input type="checkbox" checked={checked} onChange={()=>{setchecked(prev=>!prev)}}/>
                         <Typography sx={{color:'white'}}>I agree to <Link to="/rules" style={{textDecoration:'none'}}><span style={{color:'#03bca6','&:hover':{color:'white'},cursor:'pointer'}}> terms and conditions</span></Link></Typography>
                     </Stack>
-                    <Button sx={{background:"linear-gradient(to right,rgba(0,187,170,1),rgba(53,197,85,1))",width:"fit-content",color:'white',borderRadius:'25px',padding:"10px 20px",'&:hover':{boxShadow:'2px 5px 14px 0px rgba(0,0,0,0.75);',background:"linear-gradient(to left,rgba(0,187,170,1),rgba(53,197,85,1))"},fontWeight:'bold'}} onClick={handleclick}>REGISTER</Button>
+                    <Button sx={{background:"linear-gradient(to right,rgba(0,187,170,1),rgba(53,197,85,1))",width:"fit-content",color:'white',borderRadius:'25px',padding:"10px 20px",'&:hover':{boxShadow:'2px 5px 14px 0px rgba(0,0,0,0.75);',background:"linear-gradient(to left,rgba(0,187,170,1),rgba(53,197,85,1))"},fontWeight:'bold'}} onClick={handleclick} disabled={isLoading}>                    {!isLoading &&<Typography sx={{fontSize:{xs:'12px',md:'16px'}}}>REGISTER</Typography>}
+                    {isLoading &&<CircularProgress sx={{color:'white', width: "24px !important", height: '24px !important', padding: "0px 8px"}} />}
+                    </Button>
                 </Stack>
                
             </Stack>

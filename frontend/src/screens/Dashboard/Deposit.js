@@ -1,4 +1,4 @@
-import { Button, Divider, Stack, Typography } from "@mui/material";
+import { Button, CircularProgress, Divider, Stack, Typography } from "@mui/material";
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -17,6 +17,7 @@ const Deposit = ({setrefresh}) => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const deposits = useSelector((state)=>state.user.deposits)
+    const isLoading = useSelector((state)=>state.user.isLoading)
     const [selectedValue, setSelectedValue] = useState('5% after 2 days');
     const [method, setmethod] = useState('BTC');
     const [amount, setamount] = useState(100.00)
@@ -247,7 +248,10 @@ const Deposit = ({setrefresh}) => {
                                 <FormControlLabel value="Acc" control={<Radio sx={{ color: 'white' }} />} label="Account Balance" />
                             </RadioGroup>
                         </FormControl>
-                        <Button sx={{ background: "linear-gradient(to right,rgba(0,187,170,1),rgba(53,197,85,1))", width: "fit-content", color: 'white', borderRadius: '25px', padding: "10px 20px", '&:hover': { boxShadow: '2px 5px 14px 0px rgba(0,0,0,0.75);', background: "linear-gradient(to left,rgba(0,187,170,1),rgba(53,197,85,1))" }, fontWeight: 'bold', margin: 'auto' }} onClick={handleclick}>DEPOSIT</Button>
+                        <Button sx={{ background: "linear-gradient(to right,rgba(0,187,170,1),rgba(53,197,85,1))", width: "fit-content", color: 'white', borderRadius: '25px', padding: "10px 20px", '&:hover': { boxShadow: '2px 5px 14px 0px rgba(0,0,0,0.75);', background: "linear-gradient(to left,rgba(0,187,170,1),rgba(53,197,85,1))" }, fontWeight: 'bold', margin: 'auto' }} onClick={handleclick} disabled={isLoading}>
+                        {!isLoading &&<Typography sx={{fontSize:{xs:'12px',md:'16px'}}}>DEPOSIT</Typography>}
+                         {isLoading &&<CircularProgress sx={{color:'white', width: "24px !important", height: '24px !important', padding: "0px 8px"}} />}
+                        </Button>
 
                     </Stack>
                 </Stack>
