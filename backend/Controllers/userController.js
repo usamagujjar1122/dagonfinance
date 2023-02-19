@@ -670,13 +670,13 @@ exports.deposit = async (req, res) => {
   const time = () => {
     switch (package) {
       case '5% after 2 days':
-        return 2*86400000;
+        return 2*86400;
       case '8% after 2 days':
-        return 2*86400000;
+        return 2*86400;
       case '10% after 3 days':
-        return (3*86400000);
+        return (3*86400);
       case '15% after 1 week':
-        return (7*86400000);
+        return (7*86400);
       default:
         break;
     }
