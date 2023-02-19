@@ -63,10 +63,10 @@ const Contact = () => {
                         <input type="text" style={{padding:'10px',border:'none',outline:'none',width:'95%'}} value={email} onChange={(e)=>{setemail(e.target.value)}}/>
                     </Box>
                 </Stack>
-                <Box sx={{width:{xs:'90%',md:'60%',marginTop:'20px'}}}>
+                <Stack sx={{width:{xs:'90%',md:'60%',marginTop:'20px'}}}>
                         <Typography sx={{color:'white'}}>Your Message</Typography>
-                        <textarea type="text" style={{padding:'10px',border:'none',outline:'none',width:'95%'}} rows="5" value={mmsg} onChange={(e)=>{setmmsg(e.target.value)}}/>
-                    </Box>
+                        <textarea type="text" style={{padding:'10px',border:'none',outline:'none',width:{xs:'95%',md:'100%'}}} rows="5" value={mmsg} onChange={(e)=>{setmmsg(e.target.value)}}/>
+                    </Stack>
                     <Button sx={{backgroundColor:"#444",width:"fit-content",color:'white',borderRadius:'25px',padding:"10px 20px",'&:hover':{boxShadow:'2px 5px 14px 0px rgba(0,0,0,0.75);',backgroundColor:'#edd50e'},fontWeight:'bold',marginTop:'20px'}} onClick={handleclick}>Send</Button>
 
             </Stack>

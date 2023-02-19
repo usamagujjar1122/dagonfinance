@@ -26,8 +26,9 @@ const Navbar = () => {
             <Stack>
                 <Stack direction="row" sx={{ padding: {xs:'20px 10px',md:"20px 50px"}, backgroundColor: '#0d2736', justifyContent: 'space-between', alignItems: 'center' }}>
                     <Stack direction="row" sx={{ gap: "20px" }}>
-                        <Typography sx={{ color: 'white', fontWeight: '900', fontSize:{xs:'16px',md:"32px"},whiteSpace:'nowrap'}}>DAGON FINANCE</Typography>
+                        <Link to="/" style={{textDecoration:'none'}}><Typography sx={{ color: 'white', fontWeight: '900', fontSize:{xs:'16px',md:"32px"},whiteSpace:'nowrap'}}>DAGON FINANCE</Typography></Link>
                     </Stack>
+                    <Link to="/contact" style={{textDecoration:'none'}}>
                     <Stack sx={{ alignItems: 'end' }}>
                         <Stack direction="row" sx={{ alignItems: "center", gap: {xs:'2px',md:'10px'} }}><SupportAgentIcon sx={{ color: '#e1c903', fontSize:{xs:'22px', md:"38px"} }} /><Typography sx={{ color: 'white', fontSize:{xs:'12px',md:"18px"}, fontWeight: '600',whiteSpace:'nowrap' }}>HAVE A QUESTION?</Typography></Stack>
                         <Stack direction="row" sx={{ alignItems: 'center', gap: '10px' }}>
@@ -35,6 +36,7 @@ const Navbar = () => {
                             <Stack direction="row" sx={{ alignItems: "center", backgroundColor: "white", borderRadius: '25px', gap: "5px", padding: '5px 10px' }}><CircleIcon sx={{ color: '#35c555', fontSize:{ xs:'10px',md:'14px'} }} /><Typography sx={{ color: '#35c555', fontSize:{xs:'10px',md:'14px'} }}>ONLINE</Typography></Stack>
                         </Stack>
                     </Stack>
+                    </Link>
                 </Stack>
                 <Stack direction="row" sx={{ justifyContent: 'space-between', backgroundColor: '#375160', alignItems: 'center', padding: {xs:'20px 10px',md:"20px 50px"} }}>
                     <IconButton sx={{ display: md ? 'none' : 'flex' }} onClick={()=>toggleDrawer(true)}><MenuIcon sx={{ color: "white" }} /></IconButton>
@@ -43,7 +45,7 @@ const Navbar = () => {
                         open={open}
                         onClose={()=>toggleDrawer(false)}
                     >
-                        <Paper sx={{minWidth:'50vw',backgroundColor:'#375160',minHeight:'100%'}} onClick={()=>setOpen(false)}>
+                        <Paper sx={{backgroundColor:'#375160',minHeight:'100%'}} onClick={()=>setOpen(false)}>
                         <Stack sx={{gap:"20px",padding:'20px'}}>
                         <Link to="/" style={{textDecoration:'none'}}><Typography sx={{ color: 'white', cursor: "pointer", fontWeight: "700", '&:hover': { color: '#e1c903', transform: 'translateY(-5px)' }, transition: 'transform 0.5s', fontSize: '14px', textTransform: "uppercase", whiteSpace: 'nowrap' }}>HOME</Typography></Link>
                         <Link to="/about" style={{textDecoration:'none'}}><Typography sx={{ color: 'white', cursor: "pointer", fontWeight: "700", '&:hover': { color: '#e1c903', transform: 'translateY(-5px)' }, transition: 'transform 0.5s', fontSize: '14px', textTransform: "uppercase", whiteSpace: 'nowrap' }}>about us</Typography></Link>
