@@ -38,6 +38,9 @@ const ButtoN = ({type,item,setAlert, setMsg, setType,setrefresh}) => {
         setLoading(true)
         const res = await axios.post(`${URL}/user/cancle`, {item})
         if(res.data.status==="success"){
+            setAlert(true)
+            setMsg(res.data.message)
+            setType('success')
             setrefresh((prev)=>!prev)
         }
     }

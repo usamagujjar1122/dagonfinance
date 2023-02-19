@@ -150,6 +150,9 @@ export const edit = (formdata, navigate,setrefresh) => async (dispatch) => {
     const res = await axios.post(`${URL}/user/edit`, formdata);
     navigate("/dashboard",{replace:true});
     dispatch(setAlert(res.data.message, "success"));
+    dispatch({
+      type: SET_LOADING,
+    });
     setrefresh(prev=>!prev)
   } catch (err) {
     dispatch(setAlert(err.response.data.message, "error"));
@@ -165,6 +168,9 @@ export const withdrawcommision = (formdata,setrefresh) => async (dispatch) => {
     });
     const res = await axios.post(`${URL}/user/withdrawcommision`, formdata);
     dispatch(setAlert(res.data.message, "success"));
+    dispatch({
+      type: SET_LOADING,
+    });
     setrefresh(prev=>!prev)
   } catch (err) {
     dispatch(setAlert(err.response.data.message, "error"));
@@ -195,11 +201,15 @@ export const withdraw = (formdata, navigate,setrefresh) => async (dispatch) => {
       type: LOADING,
     });
     const res = await axios.post(`${URL}/user/withdraw`, formdata);
-    navigate("/dashboard",{replace:true});
     dispatch(setAlert(res.data.message, "success"));
+    dispatch({
+      type: SET_LOADING,
+    });
+    navigate("/dashboard",{replace:true});
     setrefresh(prev=>!prev)
   } catch (err) {
-    dispatch(setAlert(err.response.data.message, "error"));dispatch({
+    dispatch(setAlert(err.response.data.message, "error"));
+    dispatch({
       type: SET_LOADING,
     });
   }
@@ -210,9 +220,12 @@ export const request = (formdata, navigate,setrefresh) => async (dispatch) => {
       type: LOADING,
     });
     const res = await axios.post(`${URL}/user/request`, formdata);
-    navigate("/dashboard",{replace:true});
     dispatch(setAlert(res.data.message, "success"));
+    dispatch({
+      type: SET_LOADING,
+    });
     setrefresh(prev=>!prev)
+    navigate("/dashboard",{replace:true});
   } catch (err) {
     dispatch(setAlert(err.response.data.message, "error"));
     dispatch({

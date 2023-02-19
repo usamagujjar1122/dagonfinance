@@ -43,6 +43,10 @@ const SingleOrder = ({ item, setAlert, setMsg, setType, setrefresh }) => {
                         <Typography sx={{flex:1, fontWeight: 'bold', fontSize: '18px', whiteSpace: 'nowrap' }}>Time : </Typography>
                         <Typography sx={{flex:2, color: 'gray', fontSize: '18px' }}>{item.createdat.slice(11, 16)}</Typography>
                     </Stack>
+                    <Stack direction={"row"} >
+                        <Typography sx={{flex:1, fontWeight: 'bold', fontSize: '18px', whiteSpace: 'nowrap' }}>Method : </Typography>
+                        <Typography sx={{flex:2, color: 'gray', fontSize: '18px' }}>{item.method}</Typography>
+                    </Stack>
                     <Stack direction={"row"} sx={{maxWidth:'100%'}}>
                         <Typography sx={{ flex:1,fontWeight: 'bold', fontSize: '18px', whiteSpace: 'nowrap',flex:1 }}>Trx : </Typography>
                         <Typography sx={{flex:2, color: 'gray', fontSize: '18px', cursor: 'pointer',overflowWrap:'anywhere'}} onClick={() => copy(item.TrxID)}>{item.TrxID}</Typography>

@@ -10,7 +10,7 @@ const Home = () => {
     const token = searchParams.get('token')
     useEffect(()=>{
         const verify = async () => {
-            const res = await axios.post(`http://localhost:5000/user/verify`,{token:token})
+            const res = await axios.post(`https://dagonfinance.onrender.com/user/verify`,{token:token})
             console.log(res.data)
             dispatch(setAlert(res.data.message,res.data.status))
         }

@@ -12,7 +12,6 @@ const Account = () => {
     
     const getData = async()=>{
         const res = await axios.get('https://geolocation-db.com/json/')
-        console.log(res.data);
         setIP(res.data.IPv4)
     }
     useEffect(()=>{
@@ -22,6 +21,7 @@ const Account = () => {
         <>
         { user && 
         <Stack sx={{flex:4,gap:'20px'}}>
+        
                     <Stack direction={md?'row':'column'} sx={{backgroundColor:'#35c555',padding:'10px',justifyContent:'space-between',borderRadius:'10px',gap:{xs:'20px',md:'0px'}}}>
                         <Stack direction="row" sx={{alignItems:'center',gap:'10px'}}>
                             <img src="img/accountbox2.png" alt="" style={{width:'50px'}}/>
@@ -51,7 +51,7 @@ const Account = () => {
                     <Stack direction="row" sx={{backgroundColor:'#2e394275',padding:'10px',justifyContent:'space-between',borderRadius:'10px'}}>
                         <Stack direction={md?'row':'column'} sx={{backgroundColor:'#edd50e',borderRadius:'10px',width:'100%',padding:'20px',alignItems:'center'}}>
                             <Typography sx={{fontWeight:'600',flex:1}}>REFERAL LINK:</Typography>
-                             <input type="text" style={{flex:4, padding:'10px', border: 'none', outline: 'none', width: '95%',borderRadius:'5px',fontSize:{xs:'14px',md:'18px'},fontWeight:'bold' }} readonly value={`${WEB_URL}/register?ref=${user.username}`} />
+                             <input type="text" style={{flex:4, padding:'10px', border: 'none', outline: 'none', width: '95%',borderRadius:'5px',fontSize:{xs:'14px',md:'18px'},fontWeight:'bold' }} readOnly value={`${WEB_URL}/register?ref=${user.username}`} />
 
                         </Stack>
                     </Stack>

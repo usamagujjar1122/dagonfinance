@@ -13,6 +13,7 @@ const Withdrawl = ({setrefresh}) => {
     const [selectedValue, setSelectedValue] = useState();
     const user = useSelector((state)=>state.user.user)
     const isLoading = useSelector((state)=>state.user.isLoading)
+    const deposits = useSelector((state)=>state.user.deposits)
     const [amount,setamount] = useState()
     const [history,sethistory] = useState()
     const handleChange = (event) => {
@@ -42,6 +43,10 @@ const Withdrawl = ({setrefresh}) => {
                     <Stack direction="row" sx={{ flex: 1, color: 'white', alignItems: 'center', justifyContent: 'space-between' }}>
                         <Typography>ACCOUNT BALANCE</Typography>
                         <Typography sx={{ fontWeight: 'bold', fontSize: '22px' }}>${user.balance}</Typography>
+                    </Stack>
+                    <Stack direction="row" sx={{ flex: 1, color: 'white', alignItems: 'center', justifyContent: 'space-between' }}>
+                        <Typography>PENDING WITHDRAWL</Typography>
+                        <Typography sx={{ fontWeight: 'bold', fontSize: '22px' }}>${deposits.pendingw}</Typography>
                     </Stack>
                 </Stack>
 

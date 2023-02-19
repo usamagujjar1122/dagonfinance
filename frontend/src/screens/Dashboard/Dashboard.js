@@ -1,4 +1,4 @@
-import { Stack, Typography } from "@mui/material";
+import {  Stack, Typography } from "@mui/material";
 import Sidebar from "../../comp/sidebar";
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { Route, Routes } from "react-router-dom";
@@ -17,23 +17,22 @@ import Calculator from "./calculator";
 const Dashboard = () => {
     const dispatch = useDispatch()
     const md = useMediaQuery('(min-width:1100px)');
-    const loading = useSelector((state)=>state.user.isLoading)
+    const user = useSelector((state)=>state.user.user)
     const [refresh,setrefresh] = useState(false)
     useEffect(()=>{
-        dispatch(loadUser(localStorage.getItem('dftoken')))
+        if(user){
         dispatch(loaddeposits(user))
         dispatch(loaddepositlist(user))
         dispatch(loadreferallist(user))
         dispatch(loadhistory(user))
-        },[refresh])
-    const user = useSelector((state)=>state.user.user)
-    console.log(user)
+        }
+        },[user])
+    useEffect(()=>{
+        dispatch(loadUser(localStorage.getItem('dftoken')))
+    },[refresh])
     return (
         <>
-            {loading && <>
-                LOADING.......
-            </>}
-            { !loading && <>
+            { user && <>
             <Stack sx={{ backgroundImage: 'url(img/mainbanner.jpg)', backgroundPosition: 'center', backgroundSize: 'cover', padding: { xs: "38px 20px", md: '38px 50px' } }}>
                 <Typography sx={{ fontSize: { xs: '18px', md: '32px' } }}>USER <span style={{ fontWeight: 'bold' }}> DASHBOARD</span></Typography>
             </Stack>

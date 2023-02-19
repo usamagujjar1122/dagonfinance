@@ -27,6 +27,10 @@ const statModel = new mongoose.Schema({
     earned : {
         type: Number,
     },
+    commision : {
+        type: Number,
+    },
+    
 })
 
 const Stat = mongoose.model('Stats',statModel)

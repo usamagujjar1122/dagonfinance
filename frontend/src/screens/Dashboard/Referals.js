@@ -6,6 +6,7 @@ const Referals = ({setrefresh}) => {
     const md = useMediaQuery('(min-width:800px)');
     const referals = useSelector(state=>state.user.referals)
     const user = useSelector(state=>state.user.user)
+    const deposits = useSelector(state=>state.user.deposits)
     const isLoading = useSelector(state=>state.user.isLoading)
     const dispatch = useDispatch()
     const handleclick = (item) =>{
@@ -23,6 +24,10 @@ const Referals = ({setrefresh}) => {
                     <Stack direction="row" sx={{ flex: 1, color: 'white', alignItems: 'center', justifyContent: 'space-between' }}>
                         <Typography>TOTAL REFERALS</Typography>
                         <Typography sx={{ fontWeight: 'bold', fontSize: '22px' }}>{referals.length}</Typography>
+                    </Stack>
+                    <Stack direction="row" sx={{ flex: 1, color: 'white', alignItems: 'center', justifyContent: 'space-between' }}>
+                        <Typography>EARNED COMMISION</Typography>
+                        <Typography sx={{ fontWeight: 'bold', fontSize: '22px' }}>${deposits.commision}</Typography>
                     </Stack>
                 </Stack>
 

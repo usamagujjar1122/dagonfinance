@@ -95,7 +95,7 @@ exports.signup = async (req, res) => {
     const p = await bcrypt.hash(password, 12);
     const user = new User({ name, username, email, password: p, secq, seca, btcaddress, ethaddress, bnbaddress, usdtaddress, referedby, balance: 0, commision: 0,isverified:false });
     const userdata = await user.save();
-    const stat = new Stat({ user: userdata, actived: 0, lastd: 0, totald: 0, pendingw: 0, lastw: 0, totalw: 0, earned: 0 })
+    const stat = new Stat({ user: userdata, actived: 0, lastd: 0, totald: 0, pendingw: 0, lastw: 0, totalw: 0, earned: 0,commision:0 })
     await stat.save()
     setTimeout(() => {
       const token = jwt.sign({ email: email }, "JWT_SECRET");
@@ -202,8 +202,7 @@ exports.verify = async (req, res) => {
       await User.findOneAndUpdate({email:data.email},{isverified:true})
       res.status(200).json({ success: true, message: "Email Verified Successfully" })
     } catch (error) {
-      console.log(error)
-      res.send({ success: false, message: "Email Verification failed" })
+      return res.status(400).json({ success: false, message: error.message });
     }
   }
   else {
@@ -221,8 +220,7 @@ exports.loaduserwithid = async (req, res) => {
       res.status(400).json({ success: false })
     }
   } catch (error) {
-    console.log(error)
-    res.send({ success: false, message: "failed to get user" })
+    return res.status(400).json({ success: false, message: error.message });
   }
 };
 exports.loaddeposits = async (req, res) => {
@@ -235,8 +233,7 @@ exports.loaddeposits = async (req, res) => {
       res.status(400).json({ success: false })
     }
   } catch (error) {
-    console.log(error)
-    res.send({ success: false, message: "failed to load users" })
+    return res.status(400).json({ success: false, message: error.message });
   }
 };
 
@@ -250,8 +247,7 @@ exports.loaddepositlist = async (req, res) => {
       res.status(400).json({ success: false })
     }
   } catch (error) {
-    console.log(error)
-    res.send({ success: false, message: "failed to load users" })
+    return res.status(400).json({ success: false, message: error.message });
   }
 };
 
@@ -265,8 +261,7 @@ exports.loadwithdraw = async (req, res) => {
       res.status(400).json({ success: false })
     }
   } catch (error) {
-    console.log(error)
-    res.send({ success: false, message: "failed to load users" })
+    return res.status(400).json({ success: false, message: error.message });
   }
 };
 
@@ -279,8 +274,7 @@ exports.getusers = async (req, res) => {
       res.status(204).json({ success: false })
     }
   } catch (error) {
-    console.log(error)
-    res.send({ success: false, message: "failed to load users" })
+    return res.status(400).json({ success: false, message: error.message });
   }
 };
 
@@ -295,8 +289,7 @@ exports.loadreferallist = async (req, res) => {
         res.status(400).json({ success: false })
       }
     } catch (error) {
-      console.log(error)
-      res.send({ success: false, message: "failed to load users" })
+      return res.status(400).json({ success: false, message: error.message });
     }
   }
 };
@@ -322,8 +315,7 @@ exports.msg = async (req, res) => {
     await docs.save()
     res.status(200).json({ success: true, message: 'Message sent successfully' })
   } catch (error) {
-    console.log(error)
-    res.send({ success: false, message: "failed to load users" })
+    return res.status(400).json({ success: false, message: error.message });
   }
 };
 
@@ -336,8 +328,7 @@ exports.getmsgs = async (req, res) => {
       res.status(400).json({ success: false })
     }
   } catch (error) {
-    console.log(error)
-    res.send({ success: false, message: "failed to load users" })
+    return res.status(400).json({ success: false, message: error.message });
   }
 };
 
@@ -353,8 +344,7 @@ exports.msgstatus = async (req, res) => {
       res.send({ "status": "failed", "message": "order not found" })
     }
   } catch (error) {
-    console.log(error)
-    res.send({ "status": "failed", "message": "failed to get user" })
+    return res.status(400).json({ success: false, message: error.message });
   }
 };
 exports.getrequests = async (req, res) => {
@@ -369,8 +359,7 @@ exports.getrequests = async (req, res) => {
     }
 
   } catch (error) {
-    console.log(error)
-    res.send({ "status": "failed", "message": "failed to get user" })
+    return res.status(400).json({ success: false, message: error.message });
   }
 };
 
@@ -386,8 +375,7 @@ exports.getwithdraw = async (req, res) => {
     }
 
   } catch (error) {
-    console.log(error)
-    res.send({ "status": "failed", "message": "failed to get user" })
+    return res.status(400).json({ success: false, message: error.message });
   }
 };
 exports.loadhistory = async (req, res) => {
@@ -400,8 +388,7 @@ exports.loadhistory = async (req, res) => {
       res.status(400).json({ success: false })
     }
   } catch (error) {
-    console.log(error)
-    res.send({ success: false, message: "failed to load users" })
+    return res.status(400).json({ success: false, message: error.message });
   }
 };
 exports.forgot = async (req, res) => {
@@ -419,8 +406,7 @@ exports.forgot = async (req, res) => {
       res.status(400).json({ success: false, message: 'Email not registered' })
     }
   } catch (error) {
-    console.log(error)
-    res.send({ success: false, message: "Attempt failed" })
+    return res.status(400).json({ success: false, message: error.message });
   }
 };
 
@@ -436,24 +422,23 @@ exports.approve = async (req, res) => {
       res.send({ "status": "failed", "message": "order not found" })
     }
   } catch (error) {
-    console.log(error)
-    res.send({ "status": "failed", "message": "failed to get user" })
+    return res.status(400).json({ success: false, message: error.message });
   }
 };
 exports.cancle = async (req, res) => {
   const item = req.body.item
   try {
-
     const docs = await Request.findByIdAndUpdate(item._id, { status: 'cancelled' })
     if (docs) {
+      const history = new History({ user: item.user, type: 'Deposit Failed', amount: item.amount })
+      await history.save()
       res.send({ "status": "success", "message": 'Cancelled successfully' })
     }
     else {
       res.send({ "status": "failed", "message": "order not found" })
     }
   } catch (error) {
-    console.log(error)
-    res.send({ "status": "failed", "message": "failed to get user" })
+    return res.status(400).json({ success: false, message: error.message });
   }
 };
 
@@ -469,8 +454,7 @@ exports.deletew = async (req, res) => {
       res.send({ "status": "failed", "message": "order not found" })
     }
   } catch (error) {
-    console.log(error)
-    res.send({ "status": "failed", "message": "failed to get user" })
+    return res.status(400).json({ success: false, message: error.message });
   }
 };
 
@@ -479,7 +463,7 @@ exports.completew = async (req, res) => {
 
   try {
     await Stat.findOneAndUpdate({ user: item.user }, { lastw: item.amount, $inc: { totalw: +item.amount, pendingw: -item.amount } })
-    const docs = await Withdrawl.findByIdAndUpdate(item._id, { status: 'cmpleted' })
+    const docs = await Withdrawl.findByIdAndUpdate(item._id, { status: 'completed' })
     const user = await User.findById(item.user)
     setTimeout(() => {
       transporter.sendMail({
@@ -500,8 +484,7 @@ exports.completew = async (req, res) => {
       res.send({ "status": "failed", "message": "order not found" })
     }
   } catch (error) {
-    console.log(error)
-    res.send({ "status": "failed", "message": "failed to get user" })
+    return res.status(400).json({ success: false, message: error.message });
   }
 };
 
@@ -510,7 +493,9 @@ exports.canclew = async (req, res) => {
   try {
     await User.findByIdAndUpdate(item.user, { $inc: { balance: +item.amount } })
     const docs = await Withdrawl.findByIdAndUpdate(item._id, { status: 'cancelled' })
-    const user = await User.findById(item.user)        
+    const user = await User.findById(item.user)  
+    const history = new History({ user: item.user, type: 'Withdraw Failed', amount: item.amount })
+    await history.save()      
     if (docs) {
       setTimeout(() => {
         transporter.sendMail({
@@ -530,8 +515,7 @@ exports.canclew = async (req, res) => {
       res.send({ "status": "failed", "message": "order not found" })
     }
   } catch (error) {
-    console.log(error)
-    res.send({ "status": "failed", "message": "failed to get user" })
+    return res.status(400).json({ success: false, message: error.message });
   }
 };
 exports.deletereq = async (req, res) => {
@@ -546,8 +530,7 @@ exports.deletereq = async (req, res) => {
       res.send({ "status": "failed", "message": "order not found" })
     }
   } catch (error) {
-    console.log(error)
-    res.send({ "status": "failed", "message": "failed to get user" })
+    return res.status(400).json({ success: false, message: error.message });
   }
 };
 
@@ -571,8 +554,7 @@ exports.reset = async (req, res) => {
       .status(200)
       .json({ success: true, message: "Password changed successfully" });
   } catch (error) {
-    console.log(error)
-    res.send({ success: false, message: error.message })
+    return res.status(400).json({ success: false, message: error.message });
   }
 
 }
@@ -591,8 +573,7 @@ exports.request = async (req, res) => {
       .json({ success: true, message: "Request sent successfully" });
 
   } catch (error) {
-    console.log(error)
-    res.send({ success: false, message: error.message })
+    return res.status(400).json({ success: false, message: error.message });
   }
 }
 
@@ -604,6 +585,11 @@ exports.withdraw = async (req, res) => {
       .status(400)
       .json({ success: false, message: "Please Enter amount" });
   }
+  if (amount<10) {
+    return res
+      .status(400)
+      .json({ success: false, message: "Minimu withdraw amount in $10" });
+  }
   if (!method) {
     return res
       .status(400)
@@ -612,7 +598,7 @@ exports.withdraw = async (req, res) => {
   try {
     if (user.balance >= amount) {
       await User.findByIdAndUpdate(user._id, { $inc: { balance: -amount } })
-      await Stat.findOneAndUpdate({ user: user }, { pendingw: +amount })
+      await Stat.findOneAndUpdate({ user: user }, {$inc :{pendingw: +amount} })
       const data = new Withdrawl({ user, amount, method, status: 'pending', username: user.username })
       await data.save()
       const history = new History({ user: user, type: 'Withdraw', amount: amount })
@@ -626,8 +612,7 @@ exports.withdraw = async (req, res) => {
         .json({ success: false, message: "Not enough balance" });
     }
   } catch (error) {
-    console.log(error)
-    res.send({ success: false, message: error.message })
+    return res.status(400).json({ success: false, message: error.message });
   }
 }
 
@@ -640,8 +625,7 @@ exports.edit = async (req, res) => {
       .json({ success: true, message: "Updated Successfully" });
 
   } catch (error) {
-    console.log(error)
-    res.send({ success: false, message: error.message })
+    return res.status(400).json({ success: false, message: error.message });
   }
 }
 exports.withdrawcommision = async (req, res) => {
@@ -651,6 +635,7 @@ exports.withdrawcommision = async (req, res) => {
     const commision = refer.commision
     await User.findByIdAndUpdate(item._id, { commision: 0 })
     await User.findByIdAndUpdate(user._id, { $inc: { balance: +commision } })
+    await Stat.findOneAndUpdate({user:user._id}, { $inc: { commision: +commision } })
     const history = new History({ user: user, type: 'Commision', amount: commision })
     await history.save()
     res
@@ -658,10 +643,9 @@ exports.withdrawcommision = async (req, res) => {
       .json({ success: true, message: "Commision withdrawn wuccessfully" });
 
   } catch (error) {
-    console.log(error)
-    res.send({ success: false, message: error.message })
+    return res.status(400).json({ success: false, message: error.message });
   }
-}
+};
 exports.deposit = async (req, res) => {
   const { amount, package, method, TrxID, profit, user } = req.body
   const increment = await (amount / 100) * profit
@@ -716,7 +700,7 @@ exports.deposit = async (req, res) => {
       await Deposit.findByIdAndUpdate(id, { status: 'old' })
       const history = new History({ user: user, type: 'Earning', amount: total })
       await history.save()
-      console.log(user.username + ' incremented by &' + increment + ' on deposit of $' + amount)
+      console.log(user.username + ' incremented by $' + increment + ' on deposit of $' + amount)
     }, time()
     )
     await User.findByIdAndUpdate(user._id, { $inc: { balance: -amount } })
@@ -724,20 +708,21 @@ exports.deposit = async (req, res) => {
       .status(200)
       .json({ success: true, message: "Deposit saved successfully" });
   } catch (error) {
-    console.log(error)
-    res
-      .status(400)
-      .json({ success: true, message: "Failed to save deposit" });
+    return res.status(400).json({ success: false, message: error.message });
   }
 
 };
 
 exports.deleteUsers = async (req, res) => {
+  try{
   const selected = req.body.selected
   selected.map(async (item) => {
     console.log(item)
     await User.findOneAndDelete({ email: item });
   })
-  res.send({ status: 'success', message: 'Data deleted successfully' })
-
+  res.status(400).json({ success: false, message: "Users deleted Successfully" })
+  }
+  catch (error) {
+    return res.status(400).json({ success: false, message: error.message });
+  }
 };

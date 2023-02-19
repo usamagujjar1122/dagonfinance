@@ -14,6 +14,9 @@ const SingleMessage = ({item,setrefresh}) => {
             document.body.style.cursor='auto'
         }
     }
+    const copy = async (text) => {
+        await navigator.clipboard.writeText(text);
+    }
     return (
         <>
         <Stack sx={{ padding:{xs:'10px', md:'30px 20px'}, '&:hover': { backgroundColor: item.status === "new" && "#DADADA", cursor: item.status === "new" && 'pointer' } }} onClick={() => { changestatus(item) }}>
@@ -37,7 +40,7 @@ const SingleMessage = ({item,setrefresh}) => {
                             }   
                         </Typography>
                     </Stack>
-                    <Typography sx={{ color: 'gray', marginLeft: '0px' }}>{item.email}</Typography>
+                    <Typography sx={{ color: 'gray', marginLeft: '0px',cursor:'pointer' }} onClick={()=>{copy(item.email)}}>{item.email}</Typography>
                     <Typography sx={{ fontSize: '18px', color: 'gray',display:md?'none':'flex',margin:"10px 0px" }}>Message : {item.msg}</Typography>
                 </Stack>
                 <Stack direction={md?"column":"row"} sx={{gap:{xs:"10px",md:'0px'} }}>

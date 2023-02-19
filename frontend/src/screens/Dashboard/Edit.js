@@ -47,7 +47,7 @@ const Edit = ({setrefresh}) => {
                         <input type="text" style={{ padding:'10px', border: 'none', outline: 'none', width: '95%',borderRadius:'5px',fontWeight:'600' }} value={bnbaddress} onChange={(e)=>{setbnbaddress(e.target.value)}}/>
                     </Stack>
                     <Button sx={{marginTop:'10px',background:"linear-gradient(to right,rgba(0,187,170,1),rgba(53,197,85,1))",width:"fit-content",color:'white',borderRadius:'25px',padding:"10px 20px",'&:hover':{boxShadow:'2px 5px 14px 0px rgba(0,0,0,0.75);',background:"linear-gradient(to left,rgba(0,187,170,1),rgba(53,197,85,1))"},fontWeight:'bold',margin:'auto'}} onClick={handleclick} disabled={isLoading}>
-                    {!isLoading &&<Typography sx={{fontSize:{xs:'12px',md:'16px'}}}>LOGIN</Typography>}
+                    {!isLoading &&<Typography sx={{fontSize:{xs:'12px',md:'16px'}}}>EDIT</Typography>}
                     {isLoading &&<CircularProgress sx={{color:'white', width: "24px !important", height: '24px !important', padding: "0px 8px"}} />}
                     </Button>
                 </Stack>

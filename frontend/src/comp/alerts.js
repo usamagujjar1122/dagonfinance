@@ -31,12 +31,13 @@ export default function Alert(props) {
   return (
     <Stack spacing={2} sx={{ width: "100%" }}>
       {alerts
-        ? alerts.map((alert) => (
+        ? alerts.map((alert,index) => (
             <Snackbar
               open={props.open}
               autoHideDuration={6000}
               onClose={handleClose}
               anchorOrigin={{ vertical: "top", horizontal: "center" }}
+              key={index}
             >
               <Alertt
                 onClose={()=>{close(alert.id)}}
