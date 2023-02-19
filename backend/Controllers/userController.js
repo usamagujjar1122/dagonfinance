@@ -348,7 +348,7 @@ exports.msgstatus = async (req, res) => {
   }
 };
 
-exports.msgstatus = async (req, res) => {
+exports.delmsg = async (req, res) => {
   const item = req.body.item
   try {
     const docs = await Msgs.findByIdAndDelete(item._id)
