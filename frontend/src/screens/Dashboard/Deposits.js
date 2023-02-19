@@ -33,7 +33,7 @@ const Deposits = () => {
                     <Stack sx={{ backgroundColor: '#d9edf7', padding: '10px 0px', borderRadius: '10px', margin: '10px 0px' }}>
                         {
                             depositlist.map((item) => {
-                                if (item.package === "15% after 24 hours" && item.status === ("active"))
+                                if (item.package === "5% after 2 days" && item.status === ("active"))
                                     return (
                                         <>
                                             <Stack direction="row" sx={{ gap: '5px', padding: '10px 0px', justifyContent: 'space-between', padding: '10px', '&>p': { fontSize: { xs: '0.8rem', md: '1rem', color: 'black' } } }}>
@@ -70,7 +70,7 @@ const Deposits = () => {
                     <Stack sx={{ backgroundColor: '#d9edf7', padding: '10px 0px', borderRadius: '10px', margin: '10px 0px' }}>
                         {
                             depositlist.map((item) => {
-                                if (item.package === "20.2% after 24 hours" && item.status === ("active"))
+                                if (item.package === "8% after 2 days" && item.status === ("active"))
                                     return (
                                         <>
                                             <Stack direction="row" sx={{ gap: '5px', padding: '10px 0px', justifyContent: 'space-between', padding: '10px', '&>p': { fontSize: { xs: '0.8rem', md: '1rem', color: 'black' } } }}>
@@ -107,7 +107,7 @@ const Deposits = () => {
                     <Stack sx={{ backgroundColor: '#d9edf7', padding: '10px 0px', borderRadius: '10px', margin: '10px 0px' }}>
                     {
                             depositlist.map((item) => {
-                                if (item.package === "35% after 2 days" && item.status === ("active"))
+                                if (item.package === "10% after 3 days" && item.status === ("active"))
                                     return (
                                         <>
                                             <Stack direction="row" sx={{ gap: '5px', padding: '10px 0px', justifyContent: 'space-between', padding: '10px', '&>p': { fontSize: { xs: '0.8rem', md: '1rem', color: 'black' } } }}>
@@ -144,7 +144,7 @@ const Deposits = () => {
                     <Stack sx={{ backgroundColor: '#d9edf7', padding: '10px 0px', borderRadius: '10px', margin: '10px 0px' }}>
                     {
                             depositlist.map((item) => {
-                                if (item.package === "45% after 1 week" && item.status === ("active"))
+                                if (item.package === "15% after 1 week" && item.status === ("active"))
                                     return (
                                         <>
                                             <Stack direction="row" sx={{ gap: '5px', padding: '10px 0px', justifyContent: 'space-between', padding: '10px', '&>p': { fontSize: { xs: '0.8rem', md: '1rem', color: 'black' } } }}>

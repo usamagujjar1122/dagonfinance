@@ -42,6 +42,9 @@ const userModel = new mongoose.Schema({
     referedby:{
         type:String,
     },
+    isverified:{
+        type:Boolean,
+    },
     balance:{
         type:Number,
     },

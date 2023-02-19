@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import { deposit, request } from "../../Redux/action/userActions";
-const Checkout = () => {
+const Checkout = ({setrefresh}) => {
     const user  = useSelector((state)=>state.user.user)
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -22,7 +22,7 @@ const Checkout = () => {
             TrxID:TrxID,
             user:user
         }
-        dispatch(request(formData,navigate))
+        dispatch(request(formData,navigate,setrefresh))
     }
     return (
         <>

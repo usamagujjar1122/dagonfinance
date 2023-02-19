@@ -52,12 +52,12 @@ const SingleWithdraw = ({item,setAlert, setMsg, setType,setrefresh}) => {
                     <Typography sx={{flex:1, fontWeight: 'bold', fontSize: '18px', whiteSpace: 'nowrap' }}>Action : </Typography>
                     {item.status === 'pending' &&
                         <Stack direction="row" sx={{flex:2, gap: "10px", padding: '5px 0px' }}>
-                            <ButtoN2 item={item} type={'approve'} setMsg={setMsg} setAlert={setAlert} setType={setType} setrefresh={setrefresh} />
+                            <ButtoN2 item={item} type={'complete'} setMsg={setMsg} setAlert={setAlert} setType={setType} setrefresh={setrefresh} />
                             <ButtoN2 item={item} type={'cancle'} setMsg={setMsg} setAlert={setAlert} setType={setType} setrefresh={setrefresh} />
 
                         </Stack>
                     }
-                    {item.status === 'approved' &&
+                    {item.status === 'completed' &&
                         <Stack direction="row" sx={{flex:2, gap: "10px", padding: '5px 0px' }}>
                             <ButtoN2 item={item} type={'delete'} setMsg={setMsg} setAlert={setAlert} setType={setType} setrefresh={setrefresh} />
                         </Stack>

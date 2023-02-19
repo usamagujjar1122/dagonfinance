@@ -2,7 +2,7 @@ import { Button, Divider, Stack, Typography } from "@mui/material";
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useDispatch, useSelector } from "react-redux";
 import { withdrawcommision } from "../../Redux/action/userActions";
-const Referals = () => {
+const Referals = ({setrefresh}) => {
     const md = useMediaQuery('(min-width:800px)');
     const referals = useSelector(state=>state.user.referals)
     const user = useSelector(state=>state.user.user)
@@ -12,7 +12,7 @@ const Referals = () => {
             user:user,
             item:item,
         }
-        dispatch(withdrawcommision(formdata))
+        dispatch(withdrawcommision(formdata,setrefresh))
     }
     return ( 
         <>

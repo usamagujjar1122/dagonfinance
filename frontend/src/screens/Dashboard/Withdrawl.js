@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { withdraw } from "../../Redux/action/userActions";
 import axios from 'axios'
 import {URL} from '../../url'
-const Withdrawl = () => {
+const Withdrawl = ({setrefresh}) => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const md = useMediaQuery('(min-width:800px)');
@@ -23,7 +23,7 @@ const Withdrawl = () => {
             method:selectedValue,
             amount:amount,
         }
-        dispatch(withdraw(formdata,navigate))
+        dispatch(withdraw(formdata,navigate,setrefresh))
     }
     const loadhistory = async () =>{
         const res = await axios.post(`${URL}/user/loadwithdraw`, {user:user})

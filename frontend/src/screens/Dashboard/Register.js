@@ -85,24 +85,24 @@ const Register = () => {
 
                     <Typography sx={{ color: 'white', fontWeight: 'bold', fontSize: { xs: '18px', md: '32px' },whiteSpace:'nowrap' }}><span style={{ color: '#35c555' }}>PAYMENT </span>SYSTEM</Typography>
                     <Stack direction={md?"row":'column'} sx={{ flex: 1,width:{xs:'100%',md:'90%'},gap:{xs:'10px',md:'20px'},alignItems:{xs:'start',md:'center'} }}>
-                        <Typography sx={{width:'30%' ,color:'white',fontSize:{xs:"12px",md:'14px'}}}>Bitcoin - USDT Wallet Address:</Typography>
+                        <Typography sx={{width:'30%' ,color:'white',fontSize:{xs:"12px",md:'14px'}}}>Bitcoin - BTC Wallet Address:</Typography>
                         <input type="text" style={{ padding:'10px', border: 'none', outline: 'none', width: '95%',borderRadius:'5px',fontWeight:'600' }} value={btcaddress} onChange={(e)=>{setbtcaddress(e.target.value)}} />
                     </Stack>
                     <Stack direction={md?"row":'column'} sx={{ flex: 1,width:{xs:'100%',md:'90%'},gap:{xs:'10px',md:'20px'},alignItems:{xs:'start',md:'center'} }}>
-                        <Typography sx={{width:'30%' ,color:'white',fontSize:{xs:"12px",md:'14px'}}}>Ethereum - USDT Wallet Address:</Typography>
+                        <Typography sx={{width:'30%' ,color:'white',fontSize:{xs:"12px",md:'14px'}}}>Ethereum - ETH Wallet Address:</Typography>
                         <input type="text" style={{ padding:'10px', border: 'none', outline: 'none', width: '95%',borderRadius:'5px',fontWeight:'600' }} value={ethaddress} onChange={(e)=>{setethaddress(e.target.value)}}/>
                     </Stack>
                     <Stack direction={md?"row":'column'} sx={{ flex: 1,width:{xs:'100%',md:'90%'},gap:{xs:'10px',md:'20px'},alignItems:{xs:'start',md:'center'} }}>
-                        <Typography sx={{width:'30%' ,color:'white',fontSize:{xs:"12px",md:'14px'}}}>Tron - USDT Wallet Address:</Typography>
+                        <Typography sx={{width:'30%' ,color:'white',fontSize:{xs:"12px",md:'14px'}}}>Tron (TRC20) - USDT Wallet Address:</Typography>
                         <input type="text" style={{ padding:'10px', border: 'none', outline: 'none', width: '95%',borderRadius:'5px',fontWeight:'600' }} value={usdtaddress} onChange={(e)=>{setusdtaddress(e.target.value)}}/>
                     </Stack>
                     <Stack direction={md?"row":'column'} sx={{ flex: 1,width:{xs:'100%',md:'90%'},gap:{xs:'10px',md:'20px'},alignItems:{xs:'start',md:'center'} }}>
-                        <Typography sx={{width:'30%' ,color:'white',fontSize:{xs:"12px",md:'14px'}}}>BEP20 - USDT Wallet Address</Typography>
+                        <Typography sx={{width:'30%' ,color:'white',fontSize:{xs:"12px",md:'14px'}}}>BEP20 - BNB Wallet Address</Typography>
                         <input type="text" style={{ padding:'10px', border: 'none', outline: 'none', width: '95%',borderRadius:'5px',fontWeight:'600' }} value={bnbaddress} onChange={(e)=>{setbnbaddress(e.target.value)}}/>
                     </Stack>
                     <Stack direction="row" sx={{gap:'10px',alignItems:'center'}}>
                         <input type="checkbox" checked={checked} onChange={()=>{setchecked(prev=>!prev)}}/>
-                        <Link to="/rules"><Typography sx={{color:'white'}}>I agree to <span style={{color:'#03bca6','&:hover':{color:'white'},cursor:'pointer'}}> terms and conditions</span></Typography></Link>
+                        <Typography sx={{color:'white'}}>I agree to <Link to="/rules" style={{textDecoration:'none'}}><span style={{color:'#03bca6','&:hover':{color:'white'},cursor:'pointer'}}> terms and conditions</span></Link></Typography>
                     </Stack>
                     <Button sx={{background:"linear-gradient(to right,rgba(0,187,170,1),rgba(53,197,85,1))",width:"fit-content",color:'white',borderRadius:'25px',padding:"10px 20px",'&:hover':{boxShadow:'2px 5px 14px 0px rgba(0,0,0,0.75);',background:"linear-gradient(to left,rgba(0,187,170,1),rgba(53,197,85,1))"},fontWeight:'bold'}} onClick={handleclick}>REGISTER</Button>
                 </Stack>

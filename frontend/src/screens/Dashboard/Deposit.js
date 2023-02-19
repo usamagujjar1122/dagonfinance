@@ -11,34 +11,34 @@ import { useNavigate } from "react-router-dom";
 import { deposit } from "../../Redux/action/userActions";
 import useMediaQuery from '@mui/material/useMediaQuery';
 
-const Deposit = () => {
+const Deposit = ({setrefresh}) => {
     const md = useMediaQuery('(min-width:1100px)');
     const user  = useSelector((state)=>state.user.user)
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const deposits = useSelector((state)=>state.user.deposits)
-    const [selectedValue, setSelectedValue] = useState('15% after 24 hours');
+    const [selectedValue, setSelectedValue] = useState('5% after 2 days');
     const [method, setmethod] = useState('BTC');
     const [amount, setamount] = useState(100.00)
     const [min, setmin] = useState(100.00)
     const handleChange = (event) => {
         setSelectedValue(event.target.value);
         switch (event.target.value) {
-            case '15% after 24 hours':
-                setamount(100.00)
+            case '5% after 2 days':
+                setamount(100)
                 setmin(100)
                 break;
-            case '20.2% after 24 hours':
-                setamount(400.00)
-                setmin(400)
+            case '8% after 2 days':
+                setamount(10000)
+                setmin(10000)
                 break;
-            case '35% after 2 days':
-                setamount(1800.00)
-                setmin(1800)
+            case '10% after 3 days':
+                setamount(30000)
+                setmin(30000)
                 break;
-            case '45% after 1 week':
-                setamount(4500.00)
-                setmin(4500)
+            case '15% after 1 week':
+                setamount(100000)
+                setmin(100000)
                 break;
             default:
                 break;
@@ -63,7 +63,7 @@ const Deposit = () => {
                     TrxID: 'Account Balance',
                     user: user
                 }
-                dispatch(deposit(formData,navigate))
+                dispatch(deposit(formData,navigate,setrefresh))
                 }
                 else {
                     dispatch(setAlert('Not enough account balance','error'))
@@ -89,15 +89,15 @@ const Deposit = () => {
                 <Stack sx={{ padding: '20px', borderRadius: '10px', backgroundColor: "#2e394275", color: 'white' }}>
                     <Stack direction="row" sx={{ gap: '5px', padding: '10px 0px', alignItems: 'center' }}>
                         <Radio
-                            checked={selectedValue === '15% after 24 hours'}
+                            checked={selectedValue === '5% after 2 days'}
                             onChange={handleChange}
-                            value="15% after 24 hours"
+                            value="5% after 2 days"
                             name="radio-buttons"
                             inputProps={{ 'aria-label': 'A' }}
                             sx={{ color: 'white' }}
                         />
 
-                        <Typography sx={{ fontWeight: 'bold' }}>15% After 24 Hours</Typography>
+                        <Typography sx={{ fontWeight: 'bold' }}>5% After 2 Days</Typography>
                     </Stack>
                     <Divider sx={{ backgroundColor: 'gray' }} />
                     <Stack direction="row" sx={{ gap: '5px', padding: '10px 0px', justifyContent: 'space-between', padding: '10px' }}>
@@ -109,8 +109,8 @@ const Deposit = () => {
                     <Divider sx={{ backgroundColor: '#edd50e' }} />
                     <Stack direction="row" sx={{ gap: '5px', padding: '10px 0px', justifyContent: 'space-between', padding: '10px', '&>p': { fontSize: { xs: '0.8rem', md: '1rem' } } }}>
                         <Typography sx={{ fontWeight: '500', flex: 1 }}>BASIC</Typography>
-                        <Typography sx={{ fontWeight: '500', flex: 1, textAlign: 'center' }}>$100-$50000</Typography>
-                        <Typography sx={{ fontWeight: '500', flex: 1, textAlign: 'end' }}>15.00</Typography>
+                        <Typography sx={{ fontWeight: '500', flex: 1, textAlign: 'center' }}>$100-$9,999</Typography>
+                        <Typography sx={{ fontWeight: '500', flex: 1, textAlign: 'end' }}>5.00</Typography>
                     </Stack>
                     <Divider sx={{ backgroundColor: 'gray' }} />
                     <Stack direction="row" sx={{ gap: '5px', padding: '10px 0px', padding: '10px', justifyContent: 'end' }}>
@@ -123,15 +123,15 @@ const Deposit = () => {
                 <Stack sx={{ padding: '20px', borderRadius: '10px', backgroundColor: "#2e394275", color: 'white' }}>
                     <Stack direction="row" sx={{ gap: '5px', padding: '10px 0px', alignItems: 'center' }}>
                         <Radio
-                            checked={selectedValue === '20.2% after 24 hours'}
+                            checked={selectedValue === '8% after 2 days'}
                             onChange={handleChange}
-                            value="20.2% after 24 hours"
+                            value="8% after 2 days"
                             name="radio-buttons"
                             inputProps={{ 'aria-label': 'A' }}
                             sx={{ color: 'white' }}
                         />
 
-                        <Typography sx={{ fontWeight: 'bold' }}>20/2% After 24 Hours</Typography>
+                        <Typography sx={{ fontWeight: 'bold' }}>8% After 2 Days</Typography>
                     </Stack>
                     <Divider sx={{ backgroundColor: 'gray' }} />
                     <Stack direction="row" sx={{ gap: '5px', padding: '10px 0px', justifyContent: 'space-between', padding: '10px' }}>
@@ -143,8 +143,8 @@ const Deposit = () => {
                     <Divider sx={{ backgroundColor: '#edd50e' }} />
                     <Stack direction="row" sx={{ gap: '5px', padding: '10px 0px', justifyContent: 'space-between', padding: '10px', '&>p': { fontSize: { xs: '0.8rem', md: '1rem' } } }}>
                         <Typography sx={{ fontWeight: '500', flex: 1 }}>STANDARD</Typography>
-                        <Typography sx={{ fontWeight: '500', flex: 1, textAlign: 'center' }}>$400-$100000</Typography>
-                        <Typography sx={{ fontWeight: '500', flex: 1, textAlign: 'end' }}>20.20</Typography>
+                        <Typography sx={{ fontWeight: '500', flex: 1, textAlign: 'center' }}>$10,000-$29,000</Typography>
+                        <Typography sx={{ fontWeight: '500', flex: 1, textAlign: 'end' }}>8.00</Typography>
                     </Stack>
                     <Divider sx={{ backgroundColor: 'gray' }} />
                     <Stack direction="row" sx={{ gap: '5px', padding: '10px 0px', padding: '10px', justifyContent: 'end' }}>
@@ -156,15 +156,15 @@ const Deposit = () => {
                 <Stack sx={{ padding: '20px', borderRadius: '10px', backgroundColor: "#2e394275", color: 'white' }}>
                     <Stack direction="row" sx={{ gap: '5px', padding: '10px 0px', alignItems: 'center' }}>
                         <Radio
-                            checked={selectedValue === '35% after 2 days'}
+                            checked={selectedValue === '10% after 3 days'}
                             onChange={handleChange}
-                            value="35% after 2 days"
+                            value="10% after 3 days"
                             name="radio-buttons"
                             inputProps={{ 'aria-label': 'A' }}
                             sx={{ color: 'white' }}
                         />
 
-                        <Typography sx={{ fontWeight: 'bold' }}>35% After 2 Days</Typography>
+                        <Typography sx={{ fontWeight: 'bold' }}>10% After 3 Days</Typography>
                     </Stack>
                     <Divider sx={{ backgroundColor: 'gray' }} />
                     <Stack direction="row" sx={{ gap: '5px', padding: '10px 0px', justifyContent: 'space-between', padding: '10px' }}>
@@ -176,8 +176,8 @@ const Deposit = () => {
                     <Divider sx={{ backgroundColor: '#edd50e' }} />
                     <Stack direction="row" sx={{ gap: '5px', padding: '10px 0px', justifyContent: 'space-between', padding: '10px', '&>p': { fontSize: { xs: '0.8rem', md: '1rem' } } }}>
                         <Typography sx={{ fontWeight: '500', flex: 1 }}>PREMIUM</Typography>
-                        <Typography sx={{ fontWeight: '500', flex: 1, textAlign: 'center' }}>$1800-$999999</Typography>
-                        <Typography sx={{ fontWeight: '500', flex: 1, textAlign: 'end' }}>35.00</Typography>
+                        <Typography sx={{ fontWeight: '500', flex: 1, textAlign: 'center' }}>$30,000-$999,999</Typography>
+                        <Typography sx={{ fontWeight: '500', flex: 1, textAlign: 'end' }}>10.00</Typography>
                     </Stack>
                     <Divider sx={{ backgroundColor: 'gray' }} />
                     <Stack direction="row" sx={{ gap: '5px', padding: '10px 0px', padding: '10px', justifyContent: 'end' }}>
@@ -189,15 +189,15 @@ const Deposit = () => {
                 <Stack sx={{ padding: '20px', borderRadius: '10px', backgroundColor: "#2e394275", color: 'white' }}>
                     <Stack direction="row" sx={{ gap: '5px', padding: '10px 0px', alignItems: 'center' }}>
                         <Radio
-                            checked={selectedValue === '45% after 1 week'}
+                            checked={selectedValue === '15% after 1 week'}
                             onChange={handleChange}
-                            value="45% after 1 week"
+                            value="15% after 1 week"
                             name="radio-buttons"
                             inputProps={{ 'aria-label': 'A' }}
                             sx={{ color: 'white' }}
                         />
 
-                        <Typography sx={{ fontWeight: 'bold' }}>45% After 1 Week</Typography>
+                        <Typography sx={{ fontWeight: 'bold' }}>15% After 1 Week</Typography>
                     </Stack>
                     <Divider sx={{ backgroundColor: 'gray' }} />
                     <Stack direction="row" sx={{ gap: '5px', padding: '10px 0px', justifyContent: 'space-between', padding: '10px' }}>
@@ -209,8 +209,8 @@ const Deposit = () => {
                     <Divider sx={{ backgroundColor: '#edd50e' }} />
                     <Stack direction="row" sx={{ gap: '5px', padding: '10px 0px', justifyContent: 'space-between', padding: '10px', '&>p': { fontSize: { xs: '0.8rem', md: '1rem' } } }}>
                         <Typography sx={{ fontWeight: '500', flex: 1 }}>ULTIMATE</Typography>
-                        <Typography sx={{ fontWeight: '500', flex: 1, textAlign: 'center' }}>$4500-$999999</Typography>
-                        <Typography sx={{ fontWeight: '500', flex: 1, textAlign: 'end' }}>45.00</Typography>
+                        <Typography sx={{ fontWeight: '500', flex: 1, textAlign: 'center' }}>$100,000-$9,999,999</Typography>
+                        <Typography sx={{ fontWeight: '500', flex: 1, textAlign: 'end' }}>15.00</Typography>
                     </Stack>
                     <Divider sx={{ backgroundColor: 'gray' }} />
                     <Stack direction="row" sx={{ gap: '5px', padding: '10px 0px', padding: '10px', justifyContent: 'end' }}>

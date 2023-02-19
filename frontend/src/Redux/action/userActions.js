@@ -123,48 +123,52 @@ export const logout = () => async (dispatch) => {
     dispatch(setAlert("Error logging out", "error"));
   }
 };
-export const edit = (formdata, navigate) => async (dispatch) => {
+export const edit = (formdata, navigate,setrefresh) => async (dispatch) => {
   try {
     const res = await axios.post(`${URL}/user/edit`, formdata);
     navigate("/dashboard",{replace:true});
     dispatch(setAlert(res.data.message, "success"));
+    setrefresh(prev=>!prev)
   } catch (err) {
     dispatch(setAlert(err.response.data.message, "error"));
   }
 };
-export const withdrawcommision = (formdata) => async (dispatch) => {
+export const withdrawcommision = (formdata,setrefresh) => async (dispatch) => {
   try {
     const res = await axios.post(`${URL}/user/withdrawcommision`, formdata);
     // navigate("/dashboard",{replace:true});
     dispatch(setAlert(res.data.message, "success"));
-    window.location.reload()
+    setrefresh(prev=>!prev)
   } catch (err) {
     dispatch(setAlert(err.response.data.message, "error"));
   }
 };
-export const deposit = (formdata, navigate) => async (dispatch) => {
+export const deposit = (formdata, navigate,setrefresh) => async (dispatch) => {
   try {
     const res = await axios.post(`${URL}/user/deposit`, formdata);
     navigate("/dashboard",{replace:true});
     dispatch(setAlert(res.data.message, "success"));
+    setrefresh(prev=>!prev)
   } catch (err) {
     dispatch(setAlert(err.response.data.message, "error"));
   }
 };
-export const withdraw = (formdata, navigate) => async (dispatch) => {
+export const withdraw = (formdata, navigate,setrefresh) => async (dispatch) => {
   try {
     const res = await axios.post(`${URL}/user/withdraw`, formdata);
     navigate("/dashboard",{replace:true});
     dispatch(setAlert(res.data.message, "success"));
+    setrefresh(prev=>!prev)
   } catch (err) {
     dispatch(setAlert(err.response.data.message, "error"));
   }
 };
-export const request = (formdata, navigate) => async (dispatch) => {
+export const request = (formdata, navigate,setrefresh) => async (dispatch) => {
   try {
     const res = await axios.post(`${URL}/user/request`, formdata);
     navigate("/dashboard",{replace:true});
     dispatch(setAlert(res.data.message, "success"));
+    setrefresh(prev=>!prev)
   } catch (err) {
     dispatch(setAlert(err.response.data.message, "error"));
   }

@@ -20,11 +20,11 @@ const Home = () => {
                                 <Paper sx={{borderRadius:'15px'}}>
                                     <Stack sx={{borderRadius:'10px 10px 0px 0px',background:'linear-gradient(90deg,rgba(255,255,255,1) 50%,rgba(236,239,232,1) 50%)',alignItems:'center'}}>
                                         <Typography sx={{backgroundImage:'url(img/planflag.png)',padding:"20px",backgroundRepeat:'no-repeat',backgroundPosition:'center',fontWeight:'bold'}}>STANDARD PLAN</Typography>
-                                        <Typography sx={{fontWeight:'bold',fontSize:'50px'}}>15%</Typography>
-                                        <Typography sx={{fontWeight:'bold'}}>AFTER 24 HOURS</Typography>
+                                        <Typography sx={{fontWeight:'bold',fontSize:'50px'}}>5%</Typography>
+                                        <Typography sx={{fontWeight:'bold'}}>AFTER 2 DAYS</Typography>
                                     </Stack>
                                     <Stack sx={{borderRadius:'0px 0px 10px 10px',background:'linear-gradient(90deg,rgba(58,72,83,1) 50%,rgba(42,56,66,1) 50%)',alignItems:'center',paddingTop:"10px"}}>
-                                        <Typography sx={{fontWeight:'bold',color:'white',fontSize:'14px'}}>INVESTMENT RANGE: <span style={{color:'#65e985'}}>$100-50000</span></Typography>
+                                        <Typography sx={{fontWeight:'bold',color:'white',fontSize:'14px'}}>INVESTMENT RANGE: <span style={{color:'#65e985'}}>$100-$9,999</span></Typography>
                                         <Typography sx={{fontWeight:'bold',color:'white',fontSize:'14px'}}>AFFILIATE BONUS <span style={{color:'#65e985'}}>10%</span></Typography>
                                         <Button sx={{background:"linear-gradient(to right,rgba(0,187,170,1),rgba(53,197,85,1))",width:"fit-content",color:'white',borderRadius:'25px',padding:"10px 20px",'&:hover':{boxShadow:'2px 5px 14px 0px rgba(0,0,0,0.75);'},fontWeight:'bold',transform:'translateY(15px)'}}>DEPOSIT</Button>
                                     </Stack>
@@ -34,11 +34,11 @@ const Home = () => {
                                 <Paper sx={{borderRadius:'15px'}}>
                                     <Stack sx={{borderRadius:'10px 10px 0px 0px',background:'linear-gradient(90deg,rgba(255,255,255,1) 50%,rgba(236,239,232,1) 50%)',alignItems:'center'}}>
                                         <Typography sx={{backgroundImage:'url(img/planflag.png)',padding:"20px",backgroundRepeat:'no-repeat',backgroundPosition:'center',fontWeight:'bold'}}>MEDIUM PLAN</Typography>
-                                        <Typography sx={{fontWeight:'bold',fontSize:'50px'}}>20.2%</Typography>
-                                        <Typography sx={{fontWeight:'bold'}}>AFTER 24 HOURS</Typography>
+                                        <Typography sx={{fontWeight:'bold',fontSize:'50px'}}>8%</Typography>
+                                        <Typography sx={{fontWeight:'bold'}}>AFTER 2 DAYS</Typography>
                                     </Stack>
                                     <Stack sx={{borderRadius:'0px 0px 10px 10px',background:'linear-gradient(90deg,rgba(58,72,83,1) 50%,rgba(42,56,66,1) 50%)',alignItems:'center',paddingTop:"10px"}}>
-                                        <Typography sx={{fontWeight:'bold',color:'white',fontSize:'14px'}}>INVESTMENT RANGE: <span style={{color:'#65e985'}}>$400-100000</span></Typography>
+                                        <Typography sx={{fontWeight:'bold',color:'white',fontSize:'14px'}}>INVESTMENT RANGE: <span style={{color:'#65e985'}}>$10,000-$29,999</span></Typography>
                                         <Typography sx={{fontWeight:'bold',color:'white',fontSize:'14px'}}>AFFILIATE BONUS <span style={{color:'#65e985'}}>10%</span></Typography>
                                         <Button sx={{background:"linear-gradient(to right,rgba(0,187,170,1),rgba(53,197,85,1))",width:"fit-content",color:'white',borderRadius:'25px',padding:"10px 20px",'&:hover':{boxShadow:'2px 5px 14px 0px rgba(0,0,0,0.75);'},fontWeight:'bold',transform:'translateY(15px)'}}>DEPOSIT</Button>
                                     </Stack>
@@ -48,11 +48,11 @@ const Home = () => {
                                 <Paper sx={{borderRadius:'15px'}}>
                                     <Stack sx={{borderRadius:'10px 10px 0px 0px',background:'linear-gradient(90deg,rgba(255,255,255,1) 50%,rgba(236,239,232,1) 50%)',alignItems:'center'}}>
                                         <Typography sx={{backgroundImage:'url(img/planflag.png)',padding:"20px",backgroundRepeat:'no-repeat',backgroundPosition:'center',fontWeight:'bold'}}>PREMIUM PLAN</Typography>
-                                        <Typography sx={{fontWeight:'bold',fontSize:'50px'}}>35%</Typography>
-                                        <Typography sx={{fontWeight:'bold'}}>AFTER 2 DAYS</Typography>
+                                        <Typography sx={{fontWeight:'bold',fontSize:'50px'}}>10%</Typography>
+                                        <Typography sx={{fontWeight:'bold'}}>AFTER 3 DAYS</Typography>
                                     </Stack>
                                     <Stack sx={{borderRadius:'0px 0px 10px 10px',background:'linear-gradient(90deg,rgba(58,72,83,1) 50%,rgba(42,56,66,1) 50%)',alignItems:'center',paddingTop:"10px"}}>
-                                        <Typography sx={{fontWeight:'bold',color:'white',fontSize:'14px'}}>INVESTMENT RANGE: <span style={{color:'#65e985'}}>$1800-$999999</span></Typography>
+                                        <Typography sx={{fontWeight:'bold',color:'white',fontSize:'14px'}}>INVESTMENT RANGE: <span style={{color:'#65e985'}}>$30,000-$99,999</span></Typography>
                                         <Typography sx={{fontWeight:'bold',color:'white',fontSize:'14px'}}>AFFILIATE BONUS <span style={{color:'#65e985'}}>10%</span></Typography>
                                         <Button sx={{background:"linear-gradient(to right,rgba(0,187,170,1),rgba(53,197,85,1))",width:"fit-content",color:'white',borderRadius:'25px',padding:"10px 20px",'&:hover':{boxShadow:'2px 5px 14px 0px rgba(0,0,0,0.75);'},fontWeight:'bold',transform:'translateY(15px)'}}>DEPOSIT</Button>
                                     </Stack>
@@ -62,11 +62,11 @@ const Home = () => {
                                 <Paper sx={{borderRadius:'15px'}}>
                                     <Stack sx={{borderRadius:'10px 10px 0px 0px',background:'linear-gradient(90deg,rgba(255,255,255,1) 50%,rgba(236,239,232,1) 50%)',alignItems:'center'}}>
                                         <Typography sx={{backgroundImage:'url(img/planflag.png)',padding:"20px",backgroundRepeat:'no-repeat',backgroundPosition:'center',fontWeight:'bold'}}>ULTIMATE PLAN</Typography>
-                                        <Typography sx={{fontWeight:'bold',fontSize:'50px'}}>45%</Typography>
+                                        <Typography sx={{fontWeight:'bold',fontSize:'50px'}}>15%</Typography>
                                         <Typography sx={{fontWeight:'bold'}}>AFTER 1 WEEK</Typography>
                                     </Stack>
                                     <Stack sx={{borderRadius:'0px 0px 10px 10px',background:'linear-gradient(90deg,rgba(58,72,83,1) 50%,rgba(42,56,66,1) 50%)',alignItems:'center',paddingTop:"10px"}}>
-                                        <Typography sx={{fontWeight:'bold',color:'white',fontSize:'14px'}}>INVESTMENT RANGE: <span style={{color:'#65e985'}}>$4500-999999</span></Typography>
+                                        <Typography sx={{fontWeight:'bold',color:'white',fontSize:'14px'}}>INVESTMENT RANGE: <span style={{color:'#65e985'}}>$100,000-9,999,999</span></Typography>
                                         <Typography sx={{fontWeight:'bold',color:'white',fontSize:'14px'}}>AFFILIATE BONUS <span style={{color:'#65e985'}}>10%</span></Typography>
                                           <Button sx={{background:"linear-gradient(to right,rgba(0,187,170,1),rgba(53,197,85,1))",width:"fit-content",color:'white',borderRadius:'25px',padding:"10px 20px",'&:hover':{boxShadow:'2px 5px 14px 0px rgba(0,0,0,0.75);'},fontWeight:'bold',transform:'translateY(15px)'}}>DEPOSIT</Button>
                                     </Stack>

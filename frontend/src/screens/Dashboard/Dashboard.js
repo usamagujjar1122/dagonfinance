@@ -11,20 +11,21 @@ import Withdrawl from "./Withdrawl";
 import Edit from "./Edit";
 import { useDispatch, useSelector } from "react-redux";
 import Checkout from "./Checkout";
-import { useEffect } from "react";
+import { useEffect,useState } from "react";
 import { loaddepositlist, loaddeposits, loadhistory, loadreferallist, loadUser } from "../../Redux/action/userActions";
 import Calculator from "./calculator";
 const Dashboard = () => {
     const dispatch = useDispatch()
     const md = useMediaQuery('(min-width:1100px)');
     const loading = useSelector((state)=>state.user.isLoading)
+    const [refresh,setrefresh] = useState(false)
     useEffect(()=>{
         dispatch(loadUser(localStorage.getItem('dftoken')))
         dispatch(loaddeposits(user))
         dispatch(loaddepositlist(user))
         dispatch(loadreferallist(user))
         dispatch(loadhistory(user))
-        },[loading])
+        },[refresh])
     const user = useSelector((state)=>state.user.user)
     console.log(user)
     return (
@@ -40,13 +41,13 @@ const Dashboard = () => {
                 <Sidebar />
                 <Routes>
                     <Route path="" element={<Account />} />
-                    <Route path="/deposit" element={<Deposit />} />
+                    <Route path="/deposit" element={<Deposit setrefresh={setrefresh}/>} />
                     <Route path="/deposits" element={<Deposits />} />
                     <Route path="/history" element={<History />} />
-                    <Route path="/referals" element={<Referals />} />
-                    <Route path="/withdrawl" element={<Withdrawl />} />
-                    <Route path="/edit" element={<Edit />} />
-                    <Route path="/checkout" element={<Checkout />} />
+                    <Route path="/referals" element={<Referals setrefresh={setrefresh}/>} />
+                    <Route path="/withdrawl" element={<Withdrawl setrefresh={setrefresh}/>} />
+                    <Route path="/edit" element={<Edit setrefresh={setrefresh}/>} />
+                    <Route path="/checkout" element={<Checkout setrefresh={setrefresh}/>} />
                     <Route path="/calculate" element={<Calculator />} />
                 </Routes>
             </Stack>
