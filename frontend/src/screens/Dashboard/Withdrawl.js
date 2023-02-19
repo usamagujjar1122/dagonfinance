@@ -109,7 +109,7 @@ const Withdrawl = ({setrefresh}) => {
                             inputProps={{ 'aria-label': 'A' }}
                             sx={{ color: 'white',display:user.trcaddress? 'flex' : 'none' }}
                         />
-                        <Typography sx={{ fontWeight: '500' ,fontSize: { xs: '0.8rem', md: '1rem' }}}> Tron - TRC</Typography>
+                        <Typography sx={{ fontWeight: '500' ,fontSize: { xs: '0.8rem', md: '1rem' }}}> Tron - USDT</Typography>
                         </Stack>
                         { user.trcaddress ?
                         <Typography sx={{ fontWeight: '500',flex:md? 3: 1 }}>{md? user.trcaddress :`${user.trcaddress.slice(0,5)}......${user.trcaddress.slice(user.trcaddress.length-5,user.trcaddress.length)}`}</Typography>
@@ -130,7 +130,7 @@ const Withdrawl = ({setrefresh}) => {
                             inputProps={{ 'aria-label': 'A' }}
                             sx={{ color: 'white',display:user.bnbaddress? 'flex' : 'none' }}
                         />
-                        <Typography sx={{ fontWeight: '500' ,fontSize: { xs: '0.8rem', md: '1rem' }}}> Binance - BEP20</Typography>
+                        <Typography sx={{ fontWeight: '500' ,fontSize: { xs: '0.8rem', md: '1rem' }}}> Binance - BNB</Typography>
                         </Stack>
                         { user.bnbaddress ?
                         <Typography sx={{ fontWeight: '500',flex:md? 3: 1 }}>{md? user.bnbaddress :`${user.bnbaddress.slice(0,5)}......${user.bnbaddress.slice(user.bnbaddress.length-5,user.bnbaddress.length)}`}</Typography>
@@ -170,6 +170,8 @@ const Withdrawl = ({setrefresh}) => {
                     </>
                     ))
                     }
+                    <Typography sx={{color:'gray',textAlign:'center',padding:'10px'}}>No more data</Typography>
+
                 </Stack>
                 }
         </Stack>

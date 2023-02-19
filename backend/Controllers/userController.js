@@ -347,6 +347,21 @@ exports.msgstatus = async (req, res) => {
     return res.status(400).json({ success: false, message: error.message });
   }
 };
+
+exports.msgstatus = async (req, res) => {
+  const item = req.body.item
+  try {
+    const docs = await Msgs.findByIdAndDelete(item._id)
+    if (docs) {
+      res.send({ "status": "success", "message": "Message deleted successfully" })
+    }
+    else {
+      res.send({ "status": "failed", "message": "message not found" })
+    }
+  } catch (error) {
+    return res.status(400).json({ success: false, message: error.message });
+  }
+};
 exports.getrequests = async (req, res) => {
   try {
     const docs = await Request.find({})

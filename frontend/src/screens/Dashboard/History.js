@@ -28,6 +28,7 @@ const History = () => {
                     </>
                     )})
                     }
+                    <Typography sx={{color:'gray',textAlign:'center',padding:'10px'}}>No more data</Typography>
                 </Stack>
             </Stack>
             }

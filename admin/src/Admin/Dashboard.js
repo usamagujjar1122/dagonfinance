@@ -27,7 +27,7 @@ const Dashboard = () => {
                         <Stack sx={{ flex: 4 , '& p,& th,& td,& span':{fontSize:{xs:'0.75rem !important',md:'1rem !important',width:'95%'}},overflowX:'scroll !important' }}>
                             <Routes>
                                 <Route path="" element={<Users />} />
-                                <Route path="messages" element={<Messages />} />
+                                <Route path="messages" element={<Messages setMsg={setMsg} setAlert={setAlert} setType={setType}/>} />
                                 <Route path="ordersAD" element={<OrdersAD setMsg={setMsg} setAlert={setAlert} setType={setType}/>} />
                                 <Route path="withdraw" element={<Withdraw setMsg={setMsg} setAlert={setAlert} setType={setType}/>} />
                                 <Route path="users" element={<Users />} />

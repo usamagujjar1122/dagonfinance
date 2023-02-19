@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { URL } from './url'
 import SingleMessage from "./singleMessage";
 
-const Messages = () => {
+const Messages = ({setAlert, setMsg, setType}) => {
     const [msgs, setmsgs] = useState([])
     const [refresh, setrefresh] = useState(false)
     const [loading,setLoading] = useState(true)
@@ -26,12 +26,12 @@ const Messages = () => {
         </Box>
         }
             {msgs &&
-                <Stack sx={{ padding: '20px', backgroundColor: '#f8f8f8' }}>
+                <Stack sx={{ padding: {xs:'10px',md:'20px'}, backgroundColor: '#f8f8f8' }}>
                     <Paper>
                         <Typography sx={{ padding: '20px', fontWeight: 'bold', fontSize: '26px' }}>Inbox</Typography>
                         <Divider />
                         {msgs.map((item) => (
-                            <SingleMessage item={item} setrefresh={setrefresh} key={item._id}/>
+                            <SingleMessage item={item} setrefresh={setrefresh} key={item._id} setMsg={setMsg} setAlert={setAlert} setType={setType}/>
                         ))}
                         <Divider />
 
