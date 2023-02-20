@@ -51,6 +51,14 @@ const Menu = () => {
                         </ListItemButton>
                     </ListItem>
                     </Link>
+                    <Link to="kyc" style={{textDecoration:'none',color:'silver'}}>
+                    <ListItem disablePadding  sx={{'&:hover': {color:'white','& svg':{color:'white'}}}}>
+                        <ListItemButton>
+                                <PersonIcon sx={{color:'silver',marginRight:'5px'}}/>
+                            <ListItemText primary="KYC" />
+                        </ListItemButton>
+                    </ListItem>
+                    </Link>
                 </List>
             </Stack>
         </>

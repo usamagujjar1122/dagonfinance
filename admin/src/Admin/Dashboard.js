@@ -9,6 +9,7 @@ import {  useState } from "react";
 import AdminLogin from "./AdminLogin";
 import Alertt from "./Alert";
 import Withdraw from "./Withdrawls";
+import KYC from "./KYC";
 
 const Dashboard = () => {
     const admin = localStorage.getItem('dgfinance')
@@ -31,6 +32,7 @@ const Dashboard = () => {
                                 <Route path="ordersAD" element={<OrdersAD setMsg={setMsg} setAlert={setAlert} setType={setType}/>} />
                                 <Route path="withdraw" element={<Withdraw setMsg={setMsg} setAlert={setAlert} setType={setType}/>} />
                                 <Route path="users" element={<Users />} />
+                                <Route path="kyc" element={<KYC setMsg={setMsg} setAlert={setAlert} setType={setType}/>} />
                             </Routes>
                         </Stack>
                     </Stack>

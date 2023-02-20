@@ -1,13 +1,15 @@
 import { Stack, Typography } from "@mui/material";
 import useMediaQuery from '@mui/material/useMediaQuery';
-import {  useSelector } from "react-redux";
+import {  useDispatch, useSelector } from "react-redux";
 import {  useEffect, useState } from "react";
 import axios from "axios";
 import {WEB_URL} from '../../url'
+import { setAlert } from "../../Redux/action/alertactions";
 const Account = () => {
     const deposits = useSelector((state)=>state.user.deposits)
     const md = useMediaQuery('(min-width:1100px)');
     const user = useSelector((state)=>state.user.user)
+    const dispatch = useDispatch()
     const [ip,setIP] = useState()
     
     const getData = async()=>{
@@ -17,6 +19,10 @@ const Account = () => {
     useEffect(()=>{
         getData()
     },[])
+    const copy = async (text) => {
+        await navigator.clipboard.writeText(text);
+        dispatch(setAlert("Referal link copied", "success"))
+    }
     return ( 
         <>
         { user && 
@@ -49,10 +55,10 @@ const Account = () => {
                     </Stack>
 
                     <Stack direction="row" sx={{backgroundColor:'#2e394275',padding:'10px',justifyContent:'space-between',borderRadius:'10px'}}>
-                        <Stack direction={md?'row':'column'} sx={{backgroundColor:'#edd50e',borderRadius:'10px',width:'100%',padding:'20px',alignItems:'center'}}>
+                        <Stack direction={md?'row':'column'} sx={{backgroundColor:'#edd50e',borderRadius:'10px',width:'100%',padding:'20px',alignItems:{xs:'start',md:'center'}}}>
                             <Typography sx={{fontWeight:'600',flex:1}}>REFERAL LINK:</Typography>
-                             <input type="text" style={{flex:4, padding:'10px', border: 'none', outline: 'none', width: '95%',borderRadius:'5px',fontSize:{xs:'14px',md:'18px'},fontWeight:'bold' }} readOnly value={`${WEB_URL}/register?ref=${user.username}`} />
-
+                             <input type="text" style={{flex:4, padding:'10px', border: 'none', outline: 'none', width: '95%',borderRadius:'5px',fontSize:{xs:'12px',md:'18px'},fontWeight:'bold' }} readOnly value={`${WEB_URL}/register?ref=${user.username}`} onClick={()=>{copy(`${WEB_URL}/register?ref=${user.username}`)}}/>
+                            <Typography sx={{color:'gray',alignSelf:'end'}}>click on link to copy</Typography>
                         </Stack>
                     </Stack>
                     <Stack direction={md?'row':'column'} sx={{backgroundColor:'#05bca6',padding:'10px 20px',justifyContent:'space-between',borderRadius:'25px',gap:"30px"}}>

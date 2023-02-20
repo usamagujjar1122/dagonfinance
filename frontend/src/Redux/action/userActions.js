@@ -195,6 +195,21 @@ export const deposit = (formdata, navigate,setrefresh) => async (dispatch) => {
     });
   }
 };
+export const kyc = (formdata, navigate) => async (dispatch) => {
+  try {
+    dispatch({
+      type: LOADING,
+    });
+    const res = await axios.post(`${URL}/user/upload`, formdata);
+    dispatch(setAlert(res.data.message, "success"));
+    navigate("/dashboard",{replace:true});
+  } catch (err) {
+    dispatch(setAlert(err.response.data.message, "error"));
+    dispatch({
+      type: SET_LOADING,
+    });
+  }
+};
 export const withdraw = (formdata, navigate,setrefresh) => async (dispatch) => {
   try {
     dispatch({

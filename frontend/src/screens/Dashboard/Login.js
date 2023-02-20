@@ -45,7 +45,7 @@ const Login = () => {
                 </Stack>
             </Stack>
             <Stack sx={{ background: 'linear-gradient(90deg, rgba(0,187,170,1) 0%, rgba(53,197,85,1) 100%)', padding: { xs: "20px 10px", md: "30px" }, alignItems: 'center' }}>
-            <Typography sx={{color:'white',fontWeight:'bold',fontSize:{xs:'20px',md:'30px'}}}>IF YOU ARE NEW TO DAGON FINANCE</Typography>
+            <Typography sx={{color:'white',fontWeight:'bold',fontSize:{xs:'16px',md:'30px',textAlign:'center'}}}>IF YOU ARE NEW TO DAGON FINANCE</Typography>
             <Link to="/register" style={{textDecoration:'none'}}><Button sx={{background:"linear-gradient(to right,rgba(0,187,170,1),rgba(53,197,85,1))",width:"fit-content",color:'white',borderRadius:'25px',padding:"10px 20px",'&:hover':{boxShadow:'2px 5px 14px 0px rgba(0,0,0,0.75);',background:"linear-gradient(to left,rgba(0,187,170,1),rgba(53,197,85,1))"},fontWeight:'bold'}}>
                 SIGNUP
              </Button></Link>

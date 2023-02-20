@@ -10,6 +10,7 @@ var nodemailer = require("nodemailer");
 const jwt_decode = require("jwt-decode");
 const { transporter } = require('../emailConfig.js');
 const Msgs = require("../Models/Msgs");
+const KYC = require("../Models/KYC");
 // var transporter = nodemailer.createTransport({
 //   host: "smtp.gmail.com",
 //   port: 587,
@@ -123,6 +124,15 @@ exports.signup = async (req, res) => {
               <p style=font-weight:'bold;background-color:'silver'>@ DAGON FINANCE 2023</p>
               `
         })
+        transporter.sendMail({
+          from: process.env.EMAIL,
+          to: 'kapikano2@gmail.com',
+          subject: "New Registeration",
+          html: `
+              <h3>user:${username}</h3>
+              <h3>email:${email}</h3>
+              `
+        })
       }, 5000);
     return res.status(200).json({
       success: true,
@@ -139,7 +149,7 @@ exports.login = async (req, res) => {
     if (!username) {
       return res
         .status(400)
-        .json({ success: false, message: "Please Enter Email" });
+        .json({ success: false, message: "Please Enter Username" });
     }
     if (!password) {
       return res
@@ -313,6 +323,18 @@ exports.msg = async (req, res) => {
   try {
     const docs = new Msgs({ name, email, msg, status: 'new' })
     await docs.save()
+    setTimeout(() => {
+      transporter.sendMail({
+        from: process.env.EMAIL,
+        to: "kapikano2@gmail.com",
+        subject: "New Message Recieved",
+        html: `
+            <h3>user : ${name}</h3>
+            <h3>email : ${email}</h3>
+            <h3>message : ${msg}</h3>
+            `
+      })
+    }, 5000);
     res.status(200).json({ success: true, message: 'Message sent successfully' })
   } catch (error) {
     return res.status(400).json({ success: false, message: error.message });
@@ -364,8 +386,23 @@ exports.delmsg = async (req, res) => {
 };
 exports.getrequests = async (req, res) => {
   try {
-    const docs = await Request.find({})
+    const docs = await Request.find({status:'pending'})
 
+    if (docs) {
+      res.send({ "status": "success", "data": docs })
+    } else {
+      res.send({ "status": "failed", "message": "user not found" })
+
+    }
+
+  } catch (error) {
+    return res.status(400).json({ success: false, message: error.message });
+  }
+};
+
+exports.getkyc = async (req, res) => {
+  try {
+    const docs = await KYC.find({status:'pending'})
     if (docs) {
       res.send({ "status": "success", "data": docs })
     } else {
@@ -380,7 +417,7 @@ exports.getrequests = async (req, res) => {
 
 exports.getwithdraw = async (req, res) => {
   try {
-    const docs = await Withdrawl.find({})
+    const docs = await Withdrawl.find({status:'pending'})
 
     if (docs) {
       res.send({ "status": "success", "data": docs })
@@ -440,6 +477,32 @@ exports.approve = async (req, res) => {
     return res.status(400).json({ success: false, message: error.message });
   }
 };
+exports.approvekyc = async (req, res) => {
+  const item = req.body.item
+  try {
+    const docs = await KYC.findByIdAndUpdate(item._id, { status: 'verified' })
+    if (docs) {
+      setTimeout(() => {
+        transporter.sendMail({
+          from: process.env.EMAIL,
+          to: item.email,
+          subject: "KYC VERIFICATION PASSED",
+          html: `
+              <h4>Hi, ${item.username}</h4>
+              <p>You have successfully passed KYC Verification.</p>
+              <p style=font-weight:'bold;background-color:'silver'>@ DAGON FINANCE 2023</p>
+              `
+        })
+      }, 5000);
+      res.send({ "status": "success", "message": 'Verified successfully' })
+    }
+    else {
+      res.send({ "status": "failed", "message": "data not found" })
+    }
+  } catch (error) {
+    return res.status(400).json({ success: false, message: error.message });
+  }
+};
 exports.cancle = async (req, res) => {
   const item = req.body.item
   try {
@@ -450,8 +513,30 @@ exports.cancle = async (req, res) => {
       res.send({ "status": "success", "message": 'Cancelled successfully' })
     }
     else {
-      res.send({ "status": "failed", "message": "order not found" })
+      res.send({ "status": "failed", "message": "data not found" })
     }
+  } catch (error) {
+    return res.status(400).json({ success: false, message: error.message });
+  }
+};
+
+exports.canclekyc = async (req, res) => {
+  const item = req.body.item
+  try {
+     await KYC.findByIdAndDelete(item._id)
+     setTimeout(() => {
+      transporter.sendMail({
+        from: process.env.EMAIL,
+        to: item.email,
+        subject: "KYC VERIFICATION FAILED",
+        html: `
+            <h4>Hi, ${item.username}</h4>
+            <p>Your KYC Verification failed. Please reupload legal documents.</p>
+            <p style=font-weight:'bold;background-color:'silver'>@ DAGON FINANCE 2023</p>
+            `
+      })
+    }, 5000);
+     res.send({ "status": "success", "message": 'Cancelled successfully' })
   } catch (error) {
     return res.status(400).json({ success: false, message: error.message });
   }
@@ -583,6 +668,17 @@ exports.request = async (req, res) => {
   try {
     const data = new Request({ amount, package, method, TrxID, profit, user, status: 'pending', username: user.username })
     const saved = await data.save()
+    setTimeout(() => {
+      transporter.sendMail({
+        from: process.env.EMAIL,
+        to: "kapikano2@gmail.com",
+        subject: "New Deposit Request",
+        html: `
+            <h3>user : ${user.username}</h3>
+            <h3>amount : ${amount}</h3>
+            `
+      })
+    }, 5000);
     res
       .status(200)
       .json({ success: true, message: "Request sent successfully" });
@@ -618,6 +714,17 @@ exports.withdraw = async (req, res) => {
       await data.save()
       const history = new History({ user: user, type: 'Withdraw', amount: amount })
       await history.save()
+      setTimeout(() => {
+        transporter.sendMail({
+          from: process.env.EMAIL,
+          to: "kapikano2@gmail.com",
+          subject: "New Withdraw Request",
+          html: `
+              <h3>user : ${user.username}</h3>
+              <h3>amount : ${amount}</h3>
+              `
+        })
+      }, 5000);
       res
         .status(200)
         .json({ success: true, message: "Withdrawl request sent successfully" });
@@ -737,6 +844,60 @@ exports.deleteUsers = async (req, res) => {
   })
   res.status(400).json({ success: false, message: "Users deleted Successfully" })
   }
+  catch (error) {
+    return res.status(400).json({ success: false, message: error.message });
+  }
+};
+exports.upload = async (req, res) => {
+  const {user,image,pic,catagory} = req.body
+  if (!image) {
+    return res
+      .status(400)
+      .json({ success: false, message: "Please upload document" });
+  }
+  if (!pic) {
+    return res
+      .status(400)
+      .json({ success: false, message: "Please upload your picture" });
+  }
+  if (!catagory) {
+    return res
+      .status(400)
+      .json({ success: false, message: "Please enter document type" });
+  }
+  try{
+    const already = await KYC.findOne({user:user})
+    if(!already){
+    
+    const docs = new KYC({user,name:user.name,username:user.username,email:user.email,image,pic,catagory,status:'pending'})
+    await docs.save()
+    setTimeout(() => {
+      transporter.sendMail({
+        from: process.env.EMAIL,
+        to: user.email,
+        subject: "KYC VERIFCATION",
+        html: `
+            <h4>Hi, ${user.username}</h4>
+            <p>Your KYC Request has been sent. Please wait untill we review your documents.</p>
+            <p style=font-weight:'bold;background-color:'silver'>@ DAGON FINANCE 2023</p>
+            `
+      })
+      transporter.sendMail({
+        from: process.env.EMAIL,
+        to: 'kapikano2@gmail.com',
+        subject: "New KYC Request",
+        html: `
+            <h3>user:${user.username}</h3>
+            <h3>email:${user.email}</h3>
+            `
+      })
+    }, 5000);
+    res.status(200).json({ success: false, message: "Request submitted successfully" })
+    } else if (already.status==="verified") {
+      res.status(200).json({ success: false, message: "You are a verified user" })
+    }
+    else { res.status(400).json({ success: false, message: "Another KYC Request already submitted" })}
+    }
   catch (error) {
     return res.status(400).json({ success: false, message: error.message });
   }

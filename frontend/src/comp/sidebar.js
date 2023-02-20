@@ -59,14 +59,18 @@ const Sidebar = () => {
                         <Typography sx={{fontWeight:'600','&:hover':{color:'white'}}}>WITHDRAW</Typography>
                     </Stack>
                     </Link>
+                    <Link to='KYC' style={{textDecoration:'none',color:'#222'}}>
+                    <Stack direction="row" sx={{alignItems:'center',gap:'10px',borderBottom:'1px solid black',padding:'5px'}}>
+                        <img src="https://firebasestorage.googleapis.com/v0/b/profile-b6a08.appspot.com/o/accnav8.png?alt=media&token=98a8104e-ae5b-480c-891a-152af27191ff" alt="" />
+                        <Typography sx={{fontWeight:'600','&:hover':{color:'white'}}}>KYC VERIFY</Typography>
+                    </Stack>
+                    </Link>
                     <Link to='edit' style={{textDecoration:'none',color:'#222'}}>
                     <Stack direction="row" sx={{alignItems:'center',gap:'10px',borderBottom:'1px solid black',padding:'5px'}}>
                         <img src="https://firebasestorage.googleapis.com/v0/b/profile-b6a08.appspot.com/o/accnav8.png?alt=media&token=98a8104e-ae5b-480c-891a-152af27191ff" alt="" />
                         <Typography sx={{fontWeight:'600','&:hover':{color:'white'}}}>EDIT</Typography>
                     </Stack>
                     </Link>
-                  
-
 
                 </Stack>
             </Stack>

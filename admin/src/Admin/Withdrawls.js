@@ -12,7 +12,7 @@ const Withdraw = ({ setAlert, setMsg, setType }) => {
     useEffect(()=>{
         const getorders = async () => {
             const res = await axios.get(`${URL}/user/getwithdraw`)
-            setorders(res.data.data.filter(item=>item.status==="pending").reverse())
+            setorders(res.data.data.reverse())
             setLoading(false)
         }
         getorders()

@@ -16,7 +16,7 @@ const Navbar = () => {
     const toggleDrawer = (val) => {
         setOpen(val)
     } 
-  const user = useSelector((state) => state.user.user);
+  const user = localStorage.getItem('dftoken')
   const logoutt = () => {
     dispatch(logout())
   }

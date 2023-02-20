@@ -14,6 +14,7 @@ import Checkout from "./Checkout";
 import { useEffect,useState } from "react";
 import { loaddepositlist, loaddeposits, loadhistory, loadreferallist, loadUser } from "../../Redux/action/userActions";
 import Calculator from "./calculator";
+import KYC from "./KYC";
 const Dashboard = () => {
     const dispatch = useDispatch()
     const md = useMediaQuery('(min-width:1100px)');
@@ -48,6 +49,7 @@ const Dashboard = () => {
                     <Route path="/edit" element={<Edit setrefresh={setrefresh}/>} />
                     <Route path="/checkout" element={<Checkout setrefresh={setrefresh}/>} />
                     <Route path="/calculate" element={<Calculator />} />
+                    <Route path="/KYC" element={<KYC />} />
                     <Route path="*" element={<Account />} />
                 </Routes>
             </Stack>
