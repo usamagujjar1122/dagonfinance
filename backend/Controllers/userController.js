@@ -105,10 +105,13 @@ exports.signup = async (req, res) => {
         to: user.email,
         subject: "Welcome to DAGON FINANCE",
         html: `
-            <h4>Hi, ${name}</h4>
+            <h3>Hi, ${name}</h3>
             <p>Welcome to DAGON FINANCE. Your email is ${email}. Feel free to invest with us.</p>
-            <h4>Best Regards</h4>
-            <h4>DAGON FINANCE Team</h4>
+            <h3>Best Regards</h3>
+            <h4>85th Floor, Lower Manhattan, Suite 8500,New York, NY 10007, USA</h4>
+            <h3>Best Regards</h3>
+            <h4>85th Floor, Lower Manhattan, Suite 8500,New York, NY 10007, USA</h4>
+            <h3>DAGON FINANCE Team</h3>
             <p style="font-weight:bold;background-color:silver;">@ DAGON FINANCE 2023</p>
             `
       })
@@ -121,6 +124,8 @@ exports.signup = async (req, res) => {
               <p>Please click the button below to verify your email address </p>
               <a href=${process.env.FRONTEND_URL}?token=${token}><button style=background-color:#87CEEB;color:white;padding:5px;border:none;border-radius:5px;cursor:pointer; >Verify Email Address</button></a>
               <h4>If you did not create an account, no further action is required</h4>
+              <h3>Best Regards</h3>
+              <h4>85th Floor, Lower Manhattan, Suite 8500,New York, NY 10007, USA</h4>
               <p style=font-weight:'bold;background-color:'silver'>@ DAGON FINANCE 2023</p>
               `
         })
@@ -490,6 +495,8 @@ exports.approvekyc = async (req, res) => {
           html: `
               <h4>Hi, ${item.username}</h4>
               <p>You have successfully passed KYC Verification.</p>
+              <h3>Best Regards</h3>
+              <h4>85th Floor, Lower Manhattan, Suite 8500,New York, NY 10007, USA</h4>
               <p style=font-weight:'bold;background-color:'silver'>@ DAGON FINANCE 2023</p>
               `
         })
@@ -532,6 +539,8 @@ exports.canclekyc = async (req, res) => {
         html: `
             <h4>Hi, ${item.username}</h4>
             <p>Your KYC Verification failed. Please reupload legal documents.</p>
+            <h3>Best Regards</h3>
+            <h4>85th Floor, Lower Manhattan, Suite 8500,New York, NY 10007, USA</h4>
             <p style=font-weight:'bold;background-color:'silver'>@ DAGON FINANCE 2023</p>
             `
       })
@@ -573,6 +582,8 @@ exports.completew = async (req, res) => {
         html: `
             <h4>Hi, ${item.username}</h4>
             <p>Your withdraw request for $${item.amount} has been processed. </p>
+            <h3>Best Regards</h3>
+            <h4>85th Floor, Lower Manhattan, Suite 8500,New York, NY 10007, USA</h4>
             <p style=font-weight:'bold;background-color:'silver'>@ DAGON FINANCE 2023</p>
             `
       })
@@ -605,6 +616,8 @@ exports.canclew = async (req, res) => {
           html: `
               <h4>Hi, ${item.username}</h4>
               <p>Your withdraw request for $${item.amount} has been cancelled. </p>
+              <h3>Best Regards</h3>
+              <h4>85th Floor, Lower Manhattan, Suite 8500,New York, NY 10007, USA</h4>
               <p style=font-weight:'bold;background-color:'silver'>@ DAGON FINANCE 2023</p>
               `
         })
@@ -811,7 +824,8 @@ exports.deposit = async (req, res) => {
             <p>Your have successfully deposited $${amount}. You are currently running on a plan of ${package}.</p>
             <p>For complaints or inquires, do not hesitate to contact our 27/7 support team vai eamil</p>
             <p>${process.env.EMAIL}<p/>
-            <h4>Best Regards</h4>
+            <h3>Best Regards</h3>
+            <h4>85th Floor, Lower Manhattan, Suite 8500,New York, NY 10007, USA</h4>
             <p style=font-weight:'bold;background-color:'silver'>@ DAGON FINANCE 2023</p>
             `
       })
@@ -879,6 +893,8 @@ exports.upload = async (req, res) => {
         html: `
             <h4>Hi, ${user.username}</h4>
             <p>Your KYC Request has been sent. Please wait untill we review your documents.</p>
+            <h3>Best Regards</h3>
+            <h4>85th Floor, Lower Manhattan, Suite 8500,New York, NY 10007, USA</h4>
             <p style=font-weight:'bold;background-color:'silver'>@ DAGON FINANCE 2023</p>
             `
       })
